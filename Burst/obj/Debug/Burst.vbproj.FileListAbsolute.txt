@@ -1,0 +1,26 @@
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.exe.config
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.exe
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.pdb
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.xml
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.Form1.resources
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.Resources.resources
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.vbproj.GenerateResource.Cache
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.exe
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.xml
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.pdb
+C:\Users\Bryan Riley\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.vbprojResolveAssemblyReference.cache
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.exe.config
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.exe
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.xml
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.pdb
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.exe
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.pdb
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\bin\Debug\Burst.xml
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.vbprojResolveAssemblyReference.cache
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.Form1.resources
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.Resources.resources
+C:\Users\N23D\Documents\Visual Studio 2013\Projects\Burst\Burst\obj\Debug\Burst.vbproj.GenerateResource.Cache
+C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\bin\Debug\Burst.exe.config
+C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\obj\Debug\Burst.exe
+C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\obj\Debug\Burst.xml
+C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\obj\Debug\Burst.pdb
