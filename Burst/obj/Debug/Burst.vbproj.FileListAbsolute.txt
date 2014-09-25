@@ -24,3 +24,14 @@ C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\bin\Debug\Burst.exe.config
 C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\obj\Debug\Burst.exe
 C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\obj\Debug\Burst.xml
 C:\Users\Bryan\Source\Repos\BurstTodayUI\Burst\obj\Debug\Burst.pdb
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\bin\Debug\Burst.exe.config
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.exe
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.xml
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.pdb
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\bin\Debug\Burst.exe
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\bin\Debug\Burst.pdb
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\bin\Debug\Burst.xml
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.vbprojResolveAssemblyReference.cache
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.Form1.resources
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.Resources.resources
+C:\Burst.Today Source\Burst.Today UI\BurstTodayUI\Burst\obj\Debug\Burst.vbproj.GenerateResource.Cache

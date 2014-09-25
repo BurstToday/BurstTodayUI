@@ -339,45 +339,30 @@ Public Class Form1
         'download files from Github
 
 
-        If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today") Then
+        If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\Launcher") Then
 
         Else
-            My.Computer.FileSystem.CreateDirectory("C:\Burst.Today")
+            My.Computer.FileSystem.CreateDirectory("C:\Burst.Today\Launcher")
         End If
 
         System.Threading.Thread.Sleep(500)
 
-        'Wallet
-        Dim URL As String = "https://github.com/BurstProject/burstcoin/archive/master.zip"
-        Dim Path As String = "C:\Burst.Today\Wallet.zip"
+        'Burst.Today Launcher
+        Dim URL As String = "https://github.com/BurstToday/Burst.Today-Launcher/archive/master.zip"
+        Dim Path As String = "C:\Burst.Today\Launcher.zip"
         wc = New System.Net.WebClient
-
-        'wc.DownloadFile(New Uri(URL), Path)
         wc.DownloadFileAsync(New Uri(URL), Path)
         ProgressBar2.Value = 0
         ProgressBar2.Maximum = 110
         System.Threading.Thread.Sleep(500)
-
-        'Miner
-        Dim URL2 As String = "https://github.com/BurstProject/pocminer/archive/master.zip"
-        Dim Path2 As String = "C:\Burst.Today\Miner.zip"
-        wc2 = New System.Net.WebClient
-        'wc2.DownloadFile(New Uri(URL2), Path2)
-        wc2.DownloadFileAsync(New Uri(URL2), Path2)
-        ProgressBar3.Value = 0
-        ProgressBar3.Maximum = 110
-        Application.DoEvents()
 
 
 
     End Sub
     Private Sub DownloadProgress(ByVal sender As Object, ByVal e As System.Net.DownloadProgressChangedEventArgs) Handles wc.DownloadProgressChanged
         ProgressBar2.Value = e.ProgressPercentage
+        ProgressBar2.Refresh()
     End Sub
-    Private Sub DownloadProgress2(ByVal sender As Object, ByVal e As System.Net.DownloadProgressChangedEventArgs) Handles wc2.DownloadProgressChanged
-        ProgressBar3.Value = e.ProgressPercentage
-    End Sub
-
 
 
     Private Sub wc_DownloadFileCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles wc.DownloadFileCompleted
@@ -387,99 +372,90 @@ Public Class Form1
             ElseIf e.Error IsNot Nothing Then
                 MessageBox.Show(e.Error.ToString(), "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
-                'Extract the wallet
-                Using Zippo As Ionic.Zip.ZipFile = Ionic.Zip.ZipFile.Read("C:\Burst.Today\Wallet.zip")
+                'Extract the launcher
+                Using Zippo As Ionic.Zip.ZipFile = Ionic.Zip.ZipFile.Read("C:\Burst.Today\Launcher.zip")
                     System.Threading.Thread.Sleep(100)
-                    Zippo.ExtractAll("C:\Burst.Today\Wallet\", Ionic.Zip.ExtractExistingFileAction.OverwriteSilently)
+                    Zippo.ExtractAll("C:\Burst.Today\Launcher\", Ionic.Zip.ExtractExistingFileAction.OverwriteSilently)
                     ProgressBar2.Value = 110
                     WalletDL = 1
                     System.Threading.Thread.Sleep(500)
                     ProgressBar2.ForeColor = Color.Green
                     ProgressBar2.Refresh()
 
-                    If MinerDL = 1 Then
-                        Label8.Text = "Download Complete!"
-                        Label8.Refresh()
+                    If WalletDL = 1 Then
                         System.Threading.Thread.Sleep(1000)
-                        StartWalletClient()
 
+                        AccountInfo()
                     End If
                 End Using
             End If
         Catch ex As Exception
             ProgressBar2.ForeColor = Color.Red
             ProgressBar2.Refresh()
-
-
         End Try
        
     End Sub
 
-    Private Sub wc2_DownloadFileCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles wc2.DownloadFileCompleted
-        Try
-            If e.Cancelled Then
-
-            ElseIf e.Error IsNot Nothing Then
-                MessageBox.Show(e.Error.ToString(), "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                'Extract the Miner
-                Using Zippo As Ionic.Zip.ZipFile = Ionic.Zip.ZipFile.Read("C:\Burst.Today\Miner.zip")
-                    System.Threading.Thread.Sleep(100)
-                    Zippo.ExtractAll("C:\Burst.Today\Miner\", Ionic.Zip.ExtractExistingFileAction.OverwriteSilently)
-                    ProgressBar3.Value = 110
-
-
-                    MinerDL = 1
-                    System.Threading.Thread.Sleep(500)
-                    ProgressBar3.ForeColor = Color.DarkGreen
-                    ProgressBar3.Refresh()
-                    If WalletDL = 1 Then
-                        Label8.Text = "Download Complete!"
-                        Label8.Refresh()
-                        System.Threading.Thread.Sleep(1000)
-                        StartWalletClient()
-
-                    End If
-                End Using
-            End If
-        Catch ex As Exception
-            ProgressBar3.ForeColor = Color.Red
-            ProgressBar3.Refresh()
-
-
-        End Try
-    End Sub
-
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-
-
         Process.Start("Http://www.burst.today")
+    End Sub
+
+
+    Private Sub AccountInfo()
+        'Show it
+        TabControl1.SelectedIndex = 1
+        Dim ContinueOn As Integer = 0
+
+        'read settings
+        If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
+            Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
+            TextBox1.Text = Reader(0)
+            Clipboard.SetText(Reader(0))
+            ContinueOn = ContinueOn + 1
+        Else
+            'no passphrase.... 
+        End If
+        'read address
+        If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
+            Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
+            Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+            Tempstring = Tempstring.Trim
+            Label3.Text = "#" & Tempstring
+            ContinueOn = ContinueOn + 1
+        Else
+            TextBox1.ReadOnly = False
+        End If
+
+        If ContinueOn = 2 Then
+            StartWalletClient()
+        Else
+
+
+            Dim result As Integer = MessageBox.Show("No Account information found," & vbCrLf & "Do you already have an account & passphrase?", "Do you have a burst account?", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Cancel Then
+                Application.Exit()
+            ElseIf result = DialogResult.No Then
+                'It should already be ok then... 
+            ElseIf result = DialogResult.Yes Then
+                MessageBox.Show("Yes pressed")
+            End If
+
+        End If
+
+
+
+
+
+
 
     End Sub
+
 
 
     Private Sub StartWalletClient()
         System.Threading.Thread.Sleep(500)
         If My.Computer.FileSystem.FileExists("C:\Burst.Today\Wallet\burstcoin-master\burst.jar") Then
             Try
-                'If 1 = 2 Then
-                '    Dim procInfo As New ProcessStartInfo()
-                '    procInfo.UseShellExecute = True
-
-                '    Dim JavaExe As String = ""
-                '    If My.Computer.FileSystem.FileExists("C:\Program Files\Java\jre7\bin\java.exe") Then
-                '        JavaExe = "C:\Program Files\Java\jre7\bin\java.exe"
-                '    End If
-
-                '    If My.Computer.FileSystem.FileExists("C:\Program Files (x86)\Java\jre7\bin\java.exe") Then
-                '        JavaExe = "C:\Program Files (x86)\Java\jre7\bin\java.exe"
-                '    End If
-                '    'procInfo.FileName = ("C:\Program Files\Java\jre7\bin\java.exe")
-                '    procInfo.FileName = (JavaExe)
-                '    procInfo.WorkingDirectory = "C:\Burst.Today\Wallet\burstcoin-master\"
-                '    procInfo.Verb = "runas"
-                '    procInfo.Arguments = "-cp burst.jar;lib\*;conf; nxt.Nxt"
-                'End If
 
                 Dim procInfo As New ProcessStartInfo()
                 procInfo.UseShellExecute = False

@@ -25,15 +25,18 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Update = New System.Windows.Forms.TabPage()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.TabPage7 = New System.Windows.Forms.TabPage()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Wallet = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Mine = New System.Windows.Forms.TabPage()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.Plot = New System.Windows.Forms.TabPage()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -45,100 +48,69 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Account = New System.Windows.Forms.TabPage()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.TabPage7.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Update.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
+        Me.Wallet.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Mine.SuspendLayout()
+        Me.Plot.SuspendLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Account.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage7)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.Update)
+        Me.TabControl1.Controls.Add(Me.Account)
+        Me.TabControl1.Controls.Add(Me.Wallet)
+        Me.TabControl1.Controls.Add(Me.Mine)
+        Me.TabControl1.Controls.Add(Me.Plot)
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(413, 500)
-        Me.TabControl1.TabIndex = 0
+        Me.TabControl1.TabIndex = 3
         '
-        'TabPage1
+        'Update
         '
-        Me.TabPage1.Controls.Add(Me.Label8)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Controls.Add(Me.ProgressBar3)
-        Me.TabPage1.Controls.Add(Me.ProgressBar2)
-        Me.TabPage1.Controls.Add(Me.Button3)
-        Me.TabPage1.Controls.Add(Me.PictureBox2)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(405, 474)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Download"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(79, 300)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(251, 31)
-        Me.Label8.TabIndex = 4
-        Me.Label8.Text = "Download Progress"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(9, 411)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(58, 24)
-        Me.Label7.TabIndex = 3
-        Me.Label7.Text = "Miner"
+        Me.Update.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Update.Controls.Add(Me.Label5)
+        Me.Update.Controls.Add(Me.ProgressBar2)
+        Me.Update.Controls.Add(Me.Button3)
+        Me.Update.Controls.Add(Me.PictureBox2)
+        Me.Update.Location = New System.Drawing.Point(4, 22)
+        Me.Update.Name = "Update"
+        Me.Update.Padding = New System.Windows.Forms.Padding(3)
+        Me.Update.Size = New System.Drawing.Size(405, 474)
+        Me.Update.TabIndex = 0
+        Me.Update.Text = "Update"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(8, 350)
+        Me.Label5.ForeColor = System.Drawing.Color.White
+        Me.Label5.Location = New System.Drawing.Point(160, 343)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(66, 24)
+        Me.Label5.Size = New System.Drawing.Size(90, 24)
         Me.Label5.TabIndex = 3
-        Me.Label5.Text = "Wallet "
-        '
-        'ProgressBar3
-        '
-        Me.ProgressBar3.Location = New System.Drawing.Point(80, 404)
-        Me.ProgressBar3.Name = "ProgressBar3"
-        Me.ProgressBar3.Size = New System.Drawing.Size(250, 39)
-        Me.ProgressBar3.TabIndex = 2
+        Me.Label5.Text = "Launcher"
         '
         'ProgressBar2
         '
-        Me.ProgressBar2.Location = New System.Drawing.Point(80, 343)
+        Me.ProgressBar2.BackColor = System.Drawing.Color.White
+        Me.ProgressBar2.Location = New System.Drawing.Point(80, 370)
         Me.ProgressBar2.Name = "ProgressBar2"
         Me.ProgressBar2.Size = New System.Drawing.Size(250, 39)
         Me.ProgressBar2.TabIndex = 1
@@ -146,45 +118,101 @@ Partial Class Form1
         'Button3
         '
         Me.Button3.BackgroundImage = CType(resources.GetObject("Button3.BackgroundImage"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(80, 23)
+        Me.Button3.Location = New System.Drawing.Point(80, 63)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(250, 250)
         Me.Button3.TabIndex = 0
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'TabPage7
+        'PictureBox2
         '
-        Me.TabPage7.Controls.Add(Me.Button1)
-        Me.TabPage7.Controls.Add(Me.PictureBox1)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(405, 474)
-        Me.TabPage7.TabIndex = 6
-        Me.TabPage7.Text = "Wallet"
-        Me.TabPage7.UseVisualStyleBackColor = True
+        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.PictureBox2.Location = New System.Drawing.Point(13, 7)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(386, 461)
+        Me.PictureBox2.TabIndex = 5
+        Me.PictureBox2.TabStop = False
+        Me.PictureBox2.Visible = False
         '
-        'TabPage3
+        'Wallet
         '
-        Me.TabPage3.Controls.Add(Me.TrackBar1)
-        Me.TabPage3.Controls.Add(Me.ComboBox2)
-        Me.TabPage3.Controls.Add(Me.Button2)
-        Me.TabPage3.Controls.Add(Me.ComboBox1)
-        Me.TabPage3.Controls.Add(Me.TextBox4)
-        Me.TabPage3.Controls.Add(Me.TextBox2)
-        Me.TabPage3.Controls.Add(Me.Label6)
-        Me.TabPage3.Controls.Add(Me.Label4)
-        Me.TabPage3.Controls.Add(Me.Label13)
-        Me.TabPage3.Controls.Add(Me.Label9)
-        Me.TabPage3.Controls.Add(Me.Label10)
-        Me.TabPage3.Controls.Add(Me.Label3)
-        Me.TabPage3.Controls.Add(Me.Label1)
-        Me.TabPage3.Controls.Add(Me.TextBox1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(405, 474)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Plot Setup"
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.Wallet.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Wallet.Controls.Add(Me.Button1)
+        Me.Wallet.Controls.Add(Me.PictureBox1)
+        Me.Wallet.Location = New System.Drawing.Point(4, 22)
+        Me.Wallet.Name = "Wallet"
+        Me.Wallet.Size = New System.Drawing.Size(405, 474)
+        Me.Wallet.TabIndex = 6
+        Me.Wallet.Text = "Wallet"
+        '
+        'Button1
+        '
+        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
+        Me.Button1.Location = New System.Drawing.Point(71, 114)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(250, 250)
+        Me.Button1.TabIndex = 1
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(2, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(400, 450)
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
+        '
+        'Mine
+        '
+        Me.Mine.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Mine.Controls.Add(Me.Button4)
+        Me.Mine.Controls.Add(Me.CheckedListBox1)
+        Me.Mine.Location = New System.Drawing.Point(4, 22)
+        Me.Mine.Name = "Mine"
+        Me.Mine.Size = New System.Drawing.Size(405, 474)
+        Me.Mine.TabIndex = 7
+        Me.Mine.Text = "Mine"
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(73, 297)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 1
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Location = New System.Drawing.Point(110, 45)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(304, 354)
+        Me.CheckedListBox1.TabIndex = 0
+        '
+        'Plot
+        '
+        Me.Plot.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Plot.Controls.Add(Me.TrackBar1)
+        Me.Plot.Controls.Add(Me.ComboBox2)
+        Me.Plot.Controls.Add(Me.Button2)
+        Me.Plot.Controls.Add(Me.ComboBox1)
+        Me.Plot.Controls.Add(Me.TextBox4)
+        Me.Plot.Controls.Add(Me.TextBox2)
+        Me.Plot.Controls.Add(Me.Label6)
+        Me.Plot.Controls.Add(Me.Label4)
+        Me.Plot.Controls.Add(Me.Label13)
+        Me.Plot.Controls.Add(Me.Label9)
+        Me.Plot.Controls.Add(Me.Label10)
+        Me.Plot.Location = New System.Drawing.Point(4, 22)
+        Me.Plot.Name = "Plot"
+        Me.Plot.Size = New System.Drawing.Size(405, 474)
+        Me.Plot.TabIndex = 2
+        Me.Plot.Text = "Plot Setup"
         '
         'TrackBar1
         '
@@ -289,35 +317,6 @@ Partial Class Form1
         Me.Label10.TabIndex = 1
         Me.Label10.Text = "Select Drive to Plot On"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(22, 18)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(309, 24)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "No Account # - (Create Secure PW)"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(22, 52)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(235, 24)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Enter Password (30+Digits)"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(26, 79)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(367, 29)
-        Me.TextBox1.TabIndex = 0
-        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
@@ -331,76 +330,81 @@ Partial Class Form1
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(300, 515)
+        Me.LinkLabel1.Location = New System.Drawing.Point(339, 515)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(86, 13)
         Me.LinkLabel1.TabIndex = 1
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "www.burst.today"
         '
-        'Button1
+        'Account
         '
-        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(71, 114)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(250, 250)
-        Me.Button1.TabIndex = 1
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Account.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Account.Controls.Add(Me.TextBox3)
+        Me.Account.Controls.Add(Me.Label3)
+        Me.Account.Controls.Add(Me.Label1)
+        Me.Account.Controls.Add(Me.TextBox1)
+        Me.Account.Controls.Add(Me.Button5)
+        Me.Account.Location = New System.Drawing.Point(4, 22)
+        Me.Account.Name = "Account"
+        Me.Account.Size = New System.Drawing.Size(405, 474)
+        Me.Account.TabIndex = 8
+        Me.Account.Text = "Account"
         '
-        'PictureBox1
+        'Button5
         '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(2, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(400, 450)
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
-        Me.PictureBox1.Visible = False
+        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
+        Me.Button5.Location = New System.Drawing.Point(71, 46)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(250, 250)
+        Me.Button5.TabIndex = 0
+        Me.Button5.UseVisualStyleBackColor = True
         '
-        'PictureBox2
+        'Label3
         '
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(13, 7)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(386, 461)
-        Me.PictureBox2.TabIndex = 5
-        Me.PictureBox2.TabStop = False
-        Me.PictureBox2.Visible = False
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(12, 312)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(309, 24)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "No Account # - (Create Secure PW)"
         '
-        'TabPage2
+        'Label1
         '
-        Me.TabPage2.Controls.Add(Me.Button4)
-        Me.TabPage2.Controls.Add(Me.CheckedListBox1)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(405, 474)
-        Me.TabPage2.TabIndex = 7
-        Me.TabPage2.Text = "Mine"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(12, 380)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(235, 24)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Enter Password (30+Digits)"
         '
-        'CheckedListBox1
+        'TextBox1
         '
-        Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(110, 45)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(304, 354)
-        Me.CheckedListBox1.TabIndex = 0
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(16, 407)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(367, 29)
+        Me.TextBox1.TabIndex = 2
         '
-        'Button4
+        'TextBox3
         '
-        Me.Button4.Location = New System.Drawing.Point(73, 297)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 1
-        Me.Button4.Text = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(16, 339)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = True
+        Me.TextBox3.Size = New System.Drawing.Size(367, 29)
+        Me.TextBox3.TabIndex = 5
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(442, 534)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.TabControl1)
@@ -408,25 +412,25 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Burst.Today - Windows UI for Burst Coin"
         Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
-        Me.TabPage7.ResumeLayout(False)
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Update.ResumeLayout(False)
+        Me.Update.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
+        Me.Wallet.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Mine.ResumeLayout(False)
+        Me.Plot.ResumeLayout(False)
+        Me.Plot.PerformLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Account.ResumeLayout(False)
+        Me.Account.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TabPage7 As System.Windows.Forms.TabPage
+    Friend WithEvents Update As System.Windows.Forms.TabPage
+    Friend WithEvents Plot As System.Windows.Forms.TabPage
+    Friend WithEvents Wallet As System.Windows.Forms.TabPage
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
@@ -437,22 +441,24 @@ Partial Class Form1
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents ProgressBar3 As System.Windows.Forms.ProgressBar
     Friend WithEvents ProgressBar2 As System.Windows.Forms.ProgressBar
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents TrackBar1 As System.Windows.Forms.TrackBar
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents Mine As System.Windows.Forms.TabPage
     Friend WithEvents CheckedListBox1 As System.Windows.Forms.CheckedListBox
     Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents Account As System.Windows.Forms.TabPage
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
 
 End Class
