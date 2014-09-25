@@ -424,6 +424,8 @@ Public Class Form1
         End If
 
         If ContinueOn = 2 Then
+            Me.Refresh()
+            System.Threading.Thread.Sleep(1000)
             StartWalletClient()
         Else
 
