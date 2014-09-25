@@ -12,6 +12,12 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+      
+
+
+
+
+
         'read settings
         If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
             Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
@@ -121,25 +127,27 @@ Public Class Form1
         Dim fiArr As FileInfo() = di.GetFiles()
         ' Display the names of the files.
         Dim fri As FileInfo
-        For Each fri In fiArr
+        If 1 = 4 Then
+            For Each fri In fiArr
 
-            If fri.Name.EndsWith(".bat") Then
-                Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
-                Dim Readersize As Integer = Reader.Length
-                Dim looper As Integer = 0
-                While looper < Readersize
-                    'go through each of the files and do a replace 
-                    Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
-                    Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
-                    looper = looper + 1
-                End While
-                ' MsgBox("File =" & fri.Name)
-                System.IO.File.WriteAllLines(fri.FullName, Reader)
-            End If
+                If fri.Name.EndsWith(".bat") Then
+                    Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
+                    Dim Readersize As Integer = Reader.Length
+                    Dim looper As Integer = 0
+                    While looper < Readersize
+                        'go through each of the files and do a replace 
+                        Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
+                        Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
+                        looper = looper + 1
+                    End While
+                    ' MsgBox("File =" & fri.Name)
+                    System.IO.File.WriteAllLines(fri.FullName, Reader)
+                End If
 
-            Console.WriteLine(fri.Name)
-        Next fri
-        '--------------END PATCH THE BATCH FILES---------------
+                Console.WriteLine(fri.Name)
+            Next fri
+            '--------------END PATCH THE BATCH FILES---------------
+        End If
 
         If 1 = 3 Then
             '--------------PATCH THE BATCH FILES2---------------
@@ -574,35 +582,10 @@ Public Class Form1
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
 
-        '--------------PATCH THE BATCH FILES---------------
-        ' Make a reference to a directory.
-        Dim di As New DirectoryInfo("C:\Burst.Today\Miner\pocminer-master")
-        ' Get a reference to each file in that directory.
-        Dim fiArr As FileInfo() = di.GetFiles()
-        ' Display the names of the files.
-        Dim fri As FileInfo
-        For Each fri In fiArr
-
-            If fri.Name.EndsWith(".bat") Then
-                Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
-                Dim Readersize As Integer = Reader.Length
-                Dim looper As Integer = 0
-                While looper < Readersize
-                    'go through each of the files and do a replace 
-                    Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
-                    Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
-                    looper = looper + 1
-                End While
-                ' MsgBox("File =" & fri.Name)
-                System.IO.File.WriteAllLines(fri.FullName, Reader)
-            End If
-
-            Console.WriteLine(fri.Name)
-        Next fri
-        '--------------END PATCH THE BATCH FILES---------------
+      
 
 
-
+        System.Threading.Thread.Sleep(1000)
 
         '------------------------------------IF THERE IS NO ACCOUNT #, MAKE ONE
         Dim Address As String = ""
@@ -620,6 +603,39 @@ Public Class Form1
             System.IO.File.WriteAllLines("C:\Burst.Today\passphrases.txt", PassPhrasesTXT)
             '---------END CREATE PW
 
+
+            '--------------PATCH THE BATCH FILES---------------
+            ' Make a reference to a directory.
+            Dim di As New DirectoryInfo("C:\Burst.Today\Miner\pocminer-master")
+            ' Get a reference to each file in that directory.
+            Dim fiArr As FileInfo() = di.GetFiles()
+            ' Display the names of the files.
+            Dim fri As FileInfo
+            For Each fri In fiArr
+
+                If fri.Name.EndsWith(".bat") Then
+                    Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
+                    Dim Readersize As Integer = Reader.Length
+                    Dim looper As Integer = 0
+                    While looper < Readersize
+                        'go through each of the files and do a replace 
+                        Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
+                        Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
+                        looper = looper + 1
+                    End While
+                    ' MsgBox("File =" & fri.Name)
+                    System.IO.File.WriteAllLines(fri.FullName, Reader)
+                End If
+
+                Console.WriteLine(fri.Name)
+            Next fri
+            '--------------END PATCH THE BATCH FILES---------------
+
+
+
+
+
+
             '----------CREATE NEW ADDRESS
             Try
                 Dim procInfo As New ProcessStartInfo()
@@ -627,12 +643,11 @@ Public Class Form1
                 procInfo.UseShellExecute = False
                 Dim JavaExe As String = "C:\Burst.Today\Miner\pocminer-master\run_dump_address.bat"
                 procInfo.FileName = (JavaExe)
-                procInfo.WorkingDirectory = "C:\Burst.Today\"
+                procInfo.WorkingDirectory = "C:\Burst.Today\Miner\pocminer-master"
                 procInfo.Verb = "runas"
                 Process.Start(procInfo).WaitForExit()
-
+                My.Computer.FileSystem.CopyFile("C:\Burst.Today\Miner\pocminer-master\address.txt", "C:\Burst.Today\address.txt", True)
                 Me.BringToFront()
-
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
