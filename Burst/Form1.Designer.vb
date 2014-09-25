@@ -30,6 +30,12 @@ Partial Class Form1
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Account = New System.Windows.Forms.TabPage()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.Wallet = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -51,21 +57,15 @@ Partial Class Form1
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.Account = New System.Windows.Forms.TabPage()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.Update.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Account.SuspendLayout()
         Me.Wallet.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Mine.SuspendLayout()
         Me.Plot.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Account.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -133,6 +133,69 @@ Partial Class Form1
         Me.PictureBox2.TabIndex = 5
         Me.PictureBox2.TabStop = False
         Me.PictureBox2.Visible = False
+        '
+        'Account
+        '
+        Me.Account.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Account.Controls.Add(Me.TextBox3)
+        Me.Account.Controls.Add(Me.Label3)
+        Me.Account.Controls.Add(Me.Label1)
+        Me.Account.Controls.Add(Me.TextBox1)
+        Me.Account.Controls.Add(Me.Button5)
+        Me.Account.Location = New System.Drawing.Point(4, 22)
+        Me.Account.Name = "Account"
+        Me.Account.Size = New System.Drawing.Size(405, 474)
+        Me.Account.TabIndex = 8
+        Me.Account.Text = "Account"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(16, 339)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = True
+        Me.TextBox3.Size = New System.Drawing.Size(367, 29)
+        Me.TextBox3.TabIndex = 5
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(12, 312)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(309, 24)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "No Account # - (Create Secure PW)"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(12, 380)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(235, 24)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Enter Password (30+Digits)"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(16, 407)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(367, 29)
+        Me.TextBox1.TabIndex = 2
+        '
+        'Button5
+        '
+        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
+        Me.Button5.Location = New System.Drawing.Point(71, 46)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(250, 250)
+        Me.Button5.TabIndex = 0
+        Me.Button5.UseVisualStyleBackColor = True
         '
         'Wallet
         '
@@ -337,69 +400,6 @@ Partial Class Form1
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "www.burst.today"
         '
-        'Account
-        '
-        Me.Account.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Account.Controls.Add(Me.TextBox3)
-        Me.Account.Controls.Add(Me.Label3)
-        Me.Account.Controls.Add(Me.Label1)
-        Me.Account.Controls.Add(Me.TextBox1)
-        Me.Account.Controls.Add(Me.Button5)
-        Me.Account.Location = New System.Drawing.Point(4, 22)
-        Me.Account.Name = "Account"
-        Me.Account.Size = New System.Drawing.Size(405, 474)
-        Me.Account.TabIndex = 8
-        Me.Account.Text = "Account"
-        '
-        'Button5
-        '
-        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.Location = New System.Drawing.Point(71, 46)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(250, 250)
-        Me.Button5.TabIndex = 0
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(12, 312)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(309, 24)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "No Account # - (Create Secure PW)"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(12, 380)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(235, 24)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Enter Password (30+Digits)"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(16, 407)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(367, 29)
-        Me.TextBox1.TabIndex = 2
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(16, 339)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(367, 29)
-        Me.TextBox3.TabIndex = 5
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -415,14 +415,14 @@ Partial Class Form1
         Me.Update.ResumeLayout(False)
         Me.Update.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Account.ResumeLayout(False)
+        Me.Account.PerformLayout()
         Me.Wallet.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Mine.ResumeLayout(False)
         Me.Plot.ResumeLayout(False)
         Me.Plot.PerformLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Account.ResumeLayout(False)
-        Me.Account.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

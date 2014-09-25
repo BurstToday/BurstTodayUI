@@ -337,16 +337,11 @@ Public Class Form1
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         'download files from Github
-
-
         If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\Launcher") Then
-
         Else
             My.Computer.FileSystem.CreateDirectory("C:\Burst.Today\Launcher")
         End If
-
         System.Threading.Thread.Sleep(500)
-
         'Burst.Today Launcher
         Dim URL As String = "https://github.com/BurstToday/Burst.Today-Launcher/archive/master.zip"
         Dim Path As String = "C:\Burst.Today\Launcher.zip"
@@ -355,20 +350,16 @@ Public Class Form1
         ProgressBar2.Value = 0
         ProgressBar2.Maximum = 110
         System.Threading.Thread.Sleep(500)
-
-
-
     End Sub
+
     Private Sub DownloadProgress(ByVal sender As Object, ByVal e As System.Net.DownloadProgressChangedEventArgs) Handles wc.DownloadProgressChanged
         ProgressBar2.Value = e.ProgressPercentage
         ProgressBar2.Refresh()
     End Sub
 
-
     Private Sub wc_DownloadFileCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles wc.DownloadFileCompleted
         Try
             If e.Cancelled Then
-
             ElseIf e.Error IsNot Nothing Then
                 MessageBox.Show(e.Error.ToString(), "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
@@ -381,10 +372,8 @@ Public Class Form1
                     System.Threading.Thread.Sleep(500)
                     ProgressBar2.ForeColor = Color.Green
                     ProgressBar2.Refresh()
-
                     If WalletDL = 1 Then
                         System.Threading.Thread.Sleep(1000)
-
                         AccountInfo()
                     End If
                 End Using
@@ -437,7 +426,7 @@ Public Class Form1
             ElseIf result = DialogResult.No Then
                 'It should already be ok then... 
             ElseIf result = DialogResult.Yes Then
-                MessageBox.Show("Yes pressed")
+                TextBox3.ReadOnly = False
             End If
 
         End If
@@ -478,7 +467,7 @@ Public Class Form1
 
 
 
-                TabControl1.SelectedIndex = 1
+                TabControl1.SelectedIndex = 2
                 TabControl1.Refresh()
                 Button2.Refresh()
 
@@ -582,4 +571,96 @@ Public Class Form1
     End Sub
 
    
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+
+        '--------------PATCH THE BATCH FILES---------------
+        ' Make a reference to a directory.
+        Dim di As New DirectoryInfo("C:\Burst.Today\Miner\pocminer-master")
+        ' Get a reference to each file in that directory.
+        Dim fiArr As FileInfo() = di.GetFiles()
+        ' Display the names of the files.
+        Dim fri As FileInfo
+        For Each fri In fiArr
+
+            If fri.Name.EndsWith(".bat") Then
+                Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
+                Dim Readersize As Integer = Reader.Length
+                Dim looper As Integer = 0
+                While looper < Readersize
+                    'go through each of the files and do a replace 
+                    Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
+                    Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
+                    looper = looper + 1
+                End While
+                ' MsgBox("File =" & fri.Name)
+                System.IO.File.WriteAllLines(fri.FullName, Reader)
+            End If
+
+            Console.WriteLine(fri.Name)
+        Next fri
+        '--------------END PATCH THE BATCH FILES---------------
+
+
+
+
+        '------------------------------------IF THERE IS NO ACCOUNT #, MAKE ONE
+        Dim Address As String = ""
+
+        If Label3.Text.StartsWith("#") Then
+            'then there is already an account, copy the file
+            'My.Computer.FileSystem.CopyFile("C:\Burst.Today\passphrases.txt", SelectedDrive & "passphrases.txt", True)
+            'My.Computer.FileSystem.CopyFile("C:\Burst.Today\address.txt", SelectedDrive & "address.txt", True)
+        Else
+            'There is no account, create one
+            '---------CREATE PW
+            Dim PassPhrasesTXT(3) As String
+            PassPhrasesTXT(0) = TextBox1.Text
+            System.IO.File.WriteAllLines("C:\Burst.Today\Miner\pocminer-master\passphrases.txt", PassPhrasesTXT)
+            System.IO.File.WriteAllLines("C:\Burst.Today\passphrases.txt", PassPhrasesTXT)
+            '---------END CREATE PW
+
+            '----------CREATE NEW ADDRESS
+            Try
+                Dim procInfo As New ProcessStartInfo()
+                'procInfo.UseShellExecute = True
+                procInfo.UseShellExecute = False
+                Dim JavaExe As String = "C:\Burst.Today\Miner\pocminer-master\run_dump_address.bat"
+                procInfo.FileName = (JavaExe)
+                procInfo.WorkingDirectory = "C:\Burst.Today\"
+                procInfo.Verb = "runas"
+                Process.Start(procInfo).WaitForExit()
+
+                Me.BringToFront()
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+
+            System.Threading.Thread.Sleep(1000)
+
+            Dim ReadAddress() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
+            ' Dim Address As String = ReadAddress(0)
+            Address = ReadAddress(0)
+            Address = Address.Remove(0, InStr(Address, "->") + 2)
+            Address = Address.Trim
+
+            ' MsgBox("address=" & Address)
+            Dim WriteAddress(5) As String
+            WriteAddress(0) = Address
+
+            'it might be a different drive, but we run from C:\
+            System.IO.File.WriteAllLines("C:\Burst.Today\address.txt", WriteAddress)
+
+
+
+            '----------END CREATE NEW ADDRESS
+
+        End If
+        '------------------------------------END IF THERE IS NO ACCOUNT #, MAKE ONE
+
+        StartWalletClient()
+
+
+    End Sub
 End Class
