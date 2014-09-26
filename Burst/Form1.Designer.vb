@@ -36,12 +36,13 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Mine = New System.Windows.Forms.TabPage()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.Wallet = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Mine = New System.Windows.Forms.TabPage()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.Plot = New System.Windows.Forms.TabPage()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
@@ -61,9 +62,9 @@ Partial Class Form1
         Me.Update.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Account.SuspendLayout()
+        Me.Mine.SuspendLayout()
         Me.Wallet.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Mine.SuspendLayout()
         Me.Plot.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -72,8 +73,8 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.Update)
         Me.TabControl1.Controls.Add(Me.Account)
-        Me.TabControl1.Controls.Add(Me.Wallet)
         Me.TabControl1.Controls.Add(Me.Mine)
+        Me.TabControl1.Controls.Add(Me.Wallet)
         Me.TabControl1.Controls.Add(Me.Plot)
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
@@ -197,6 +198,48 @@ Partial Class Form1
         Me.Button5.TabIndex = 0
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'Mine
+        '
+        Me.Mine.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Mine.Controls.Add(Me.Label2)
+        Me.Mine.Controls.Add(Me.Button4)
+        Me.Mine.Controls.Add(Me.CheckedListBox1)
+        Me.Mine.Location = New System.Drawing.Point(4, 22)
+        Me.Mine.Name = "Mine"
+        Me.Mine.Size = New System.Drawing.Size(405, 474)
+        Me.Mine.TabIndex = 7
+        Me.Mine.Text = "Mine"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(147, 307)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(143, 24)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Miner Launcher"
+        '
+        'Button4
+        '
+        Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
+        Me.Button4.Location = New System.Drawing.Point(90, 45)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(250, 250)
+        Me.Button4.TabIndex = 1
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Location = New System.Drawing.Point(90, 334)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(250, 109)
+        Me.CheckedListBox1.TabIndex = 0
+        '
         'Wallet
         '
         Me.Wallet.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -228,35 +271,6 @@ Partial Class Form1
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Visible = False
         '
-        'Mine
-        '
-        Me.Mine.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Mine.Controls.Add(Me.Button4)
-        Me.Mine.Controls.Add(Me.CheckedListBox1)
-        Me.Mine.Location = New System.Drawing.Point(4, 22)
-        Me.Mine.Name = "Mine"
-        Me.Mine.Size = New System.Drawing.Size(405, 474)
-        Me.Mine.TabIndex = 7
-        Me.Mine.Text = "Mine"
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(73, 297)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 1
-        Me.Button4.Text = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'CheckedListBox1
-        '
-        Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(110, 45)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(304, 354)
-        Me.CheckedListBox1.TabIndex = 0
-        '
         'Plot
         '
         Me.Plot.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -279,26 +293,27 @@ Partial Class Form1
         '
         'TrackBar1
         '
-        Me.TrackBar1.Location = New System.Drawing.Point(26, 269)
+        Me.TrackBar1.Location = New System.Drawing.Point(26, 158)
         Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(367, 42)
+        Me.TrackBar1.Size = New System.Drawing.Size(348, 42)
         Me.TrackBar1.TabIndex = 13
         '
         'ComboBox2
         '
         Me.ComboBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(26, 192)
+        Me.ComboBox2.Location = New System.Drawing.Point(26, 55)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(367, 32)
+        Me.ComboBox2.Size = New System.Drawing.Size(348, 32)
         Me.ComboBox2.TabIndex = 12
         '
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(26, 427)
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(26, 407)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(367, 33)
+        Me.Button2.Size = New System.Drawing.Size(348, 53)
         Me.Button2.TabIndex = 10
         Me.Button2.Text = "Begin Plotting"
         Me.Button2.UseVisualStyleBackColor = True
@@ -307,7 +322,7 @@ Partial Class Form1
         '
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(192, 317)
+        Me.ComboBox1.Location = New System.Drawing.Point(203, 227)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(143, 32)
         Me.ComboBox1.TabIndex = 9
@@ -315,7 +330,7 @@ Partial Class Form1
         'TextBox4
         '
         Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(192, 355)
+        Me.TextBox4.Location = New System.Drawing.Point(203, 284)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(143, 29)
         Me.TextBox4.TabIndex = 8
@@ -324,7 +339,7 @@ Partial Class Form1
         'TextBox2
         '
         Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(192, 390)
+        Me.TextBox2.Location = New System.Drawing.Point(203, 341)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(143, 29)
         Me.TextBox2.TabIndex = 8
@@ -334,7 +349,8 @@ Partial Class Form1
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(70, 320)
+        Me.Label6.ForeColor = System.Drawing.Color.White
+        Me.Label6.Location = New System.Drawing.Point(81, 230)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(103, 24)
         Me.Label6.TabIndex = 4
@@ -344,7 +360,8 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(22, 233)
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(22, 122)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(127, 24)
         Me.Label4.TabIndex = 5
@@ -354,7 +371,8 @@ Partial Class Form1
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(39, 393)
+        Me.Label13.ForeColor = System.Drawing.Color.White
+        Me.Label13.Location = New System.Drawing.Point(50, 344)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(134, 24)
         Me.Label13.TabIndex = 6
@@ -364,7 +382,8 @@ Partial Class Form1
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(123, 358)
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(134, 287)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(50, 24)
         Me.Label9.TabIndex = 7
@@ -374,7 +393,8 @@ Partial Class Form1
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(22, 170)
+        Me.Label10.ForeColor = System.Drawing.Color.White
+        Me.Label10.Location = New System.Drawing.Point(22, 33)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(197, 24)
         Me.Label10.TabIndex = 1
@@ -417,9 +437,10 @@ Partial Class Form1
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Account.ResumeLayout(False)
         Me.Account.PerformLayout()
+        Me.Mine.ResumeLayout(False)
+        Me.Mine.PerformLayout()
         Me.Wallet.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Mine.ResumeLayout(False)
         Me.Plot.ResumeLayout(False)
         Me.Plot.PerformLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -460,5 +481,6 @@ Partial Class Form1
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class
