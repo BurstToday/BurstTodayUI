@@ -465,32 +465,34 @@ Public Class Form1
             '---------END CREATE PW
 
 
-            '--------------PATCH THE BATCH FILES---------------
-            ' Make a reference to a directory.
-            Dim di As New DirectoryInfo("C:\Burst.Today\Miner\pocminer-master")
-            ' Get a reference to each file in that directory.
-            Dim fiArr As FileInfo() = di.GetFiles()
-            ' Display the names of the files.
-            Dim fri As FileInfo
-            For Each fri In fiArr
+            If 1 = 2 Then
+                '--------------PATCH THE BATCH FILES---------------
+                ' Make a reference to a directory.
+                Dim di As New DirectoryInfo("C:\Burst.Today\Miner\pocminer-master")
+                ' Get a reference to each file in that directory.
+                Dim fiArr As FileInfo() = di.GetFiles()
+                ' Display the names of the files.
+                Dim fri As FileInfo
+                For Each fri In fiArr
 
-                If fri.Name.EndsWith(".bat") Then
-                    Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
-                    Dim Readersize As Integer = Reader.Length
-                    Dim looper As Integer = 0
-                    While looper < Readersize
-                        'go through each of the files and do a replace 
-                        Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
-                        Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
-                        looper = looper + 1
-                    End While
-                    ' MsgBox("File =" & fri.Name)
-                    System.IO.File.WriteAllLines(fri.FullName, Reader)
-                End If
+                    If fri.Name.EndsWith(".bat") Then
+                        Dim Reader() As String = System.IO.File.ReadAllLines(fri.FullName)
+                        Dim Readersize As Integer = Reader.Length
+                        Dim looper As Integer = 0
+                        While looper < Readersize
+                            'go through each of the files and do a replace 
+                            Reader(looper) = Reader(looper).Replace("java -", "C:\Windows\SysWOW64\java -")
+                            Reader(looper) = Reader(looper).Replace("Xmx4000m -", "Xmx" & TextBox4.Text & "m -")
+                            looper = looper + 1
+                        End While
+                        ' MsgBox("File =" & fri.Name)
+                        System.IO.File.WriteAllLines(fri.FullName, Reader)
+                    End If
 
-                Console.WriteLine(fri.Name)
-            Next fri
-            '--------------END PATCH THE BATCH FILES---------------
+                    Console.WriteLine(fri.Name)
+                Next fri
+                '--------------END PATCH THE BATCH FILES---------------
+            End If
 
 
 
@@ -532,8 +534,8 @@ Public Class Form1
 
             '----------END CREATE NEW ADDRESS
 
-        End If
-        '------------------------------------END IF THERE IS NO ACCOUNT #, MAKE ONE
+            End If
+            '------------------------------------END IF THERE IS NO ACCOUNT #, MAKE ONE
 
 
 

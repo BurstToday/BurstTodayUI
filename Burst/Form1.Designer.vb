@@ -31,7 +31,6 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Account = New System.Windows.Forms.TabPage()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -102,7 +101,7 @@ Partial Class Form1
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(160, 343)
+        Me.Label5.Location = New System.Drawing.Point(165, 354)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(90, 24)
         Me.Label5.TabIndex = 3
@@ -111,7 +110,7 @@ Partial Class Form1
         'ProgressBar2
         '
         Me.ProgressBar2.BackColor = System.Drawing.Color.White
-        Me.ProgressBar2.Location = New System.Drawing.Point(80, 370)
+        Me.ProgressBar2.Location = New System.Drawing.Point(87, 381)
         Me.ProgressBar2.Name = "ProgressBar2"
         Me.ProgressBar2.Size = New System.Drawing.Size(250, 39)
         Me.ProgressBar2.TabIndex = 1
@@ -119,7 +118,7 @@ Partial Class Form1
         'Button3
         '
         Me.Button3.BackgroundImage = CType(resources.GetObject("Button3.BackgroundImage"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(80, 63)
+        Me.Button3.Location = New System.Drawing.Point(87, 63)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(250, 250)
         Me.Button3.TabIndex = 0
@@ -138,7 +137,6 @@ Partial Class Form1
         'Account
         '
         Me.Account.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Account.Controls.Add(Me.TextBox3)
         Me.Account.Controls.Add(Me.Label3)
         Me.Account.Controls.Add(Me.Label1)
         Me.Account.Controls.Add(Me.TextBox1)
@@ -149,32 +147,23 @@ Partial Class Form1
         Me.Account.TabIndex = 8
         Me.Account.Text = "Account"
         '
-        'TextBox3
-        '
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(16, 339)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(367, 29)
-        Me.TextBox3.TabIndex = 5
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(12, 312)
+        Me.Label3.Location = New System.Drawing.Point(12, 348)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(309, 24)
+        Me.Label3.Size = New System.Drawing.Size(338, 24)
         Me.Label3.TabIndex = 4
-        Me.Label3.Text = "No Account # - (Create Secure PW)"
+        Me.Label3.Text = "No Account # - (Create PW, click Logo)"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(12, 380)
+        Me.Label1.Location = New System.Drawing.Point(12, 388)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(235, 24)
         Me.Label1.TabIndex = 3
@@ -183,7 +172,7 @@ Partial Class Form1
         'TextBox1
         '
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(16, 407)
+        Me.TextBox1.Location = New System.Drawing.Point(16, 415)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(367, 29)
@@ -192,7 +181,7 @@ Partial Class Form1
         'Button5
         '
         Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.Location = New System.Drawing.Point(71, 46)
+        Me.Button5.Location = New System.Drawing.Point(87, 63)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(250, 250)
         Me.Button5.TabIndex = 0
@@ -216,7 +205,7 @@ Partial Class Form1
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(147, 307)
+        Me.Label2.Location = New System.Drawing.Point(147, 342)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(143, 24)
         Me.Label2.TabIndex = 4
@@ -225,7 +214,7 @@ Partial Class Form1
         'Button4
         '
         Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
-        Me.Button4.Location = New System.Drawing.Point(90, 45)
+        Me.Button4.Location = New System.Drawing.Point(87, 63)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(250, 250)
         Me.Button4.TabIndex = 1
@@ -235,9 +224,9 @@ Partial Class Form1
         '
         Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(90, 334)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(90, 369)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(250, 109)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(250, 74)
         Me.CheckedListBox1.TabIndex = 0
         '
         'Wallet
@@ -254,7 +243,7 @@ Partial Class Form1
         'Button1
         '
         Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(71, 114)
+        Me.Button1.Location = New System.Drawing.Point(87, 102)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(250, 250)
         Me.Button1.TabIndex = 1
@@ -480,7 +469,6 @@ Partial Class Form1
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class
