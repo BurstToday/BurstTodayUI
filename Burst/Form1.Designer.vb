@@ -101,7 +101,7 @@ Partial Class Form1
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(165, 354)
+        Me.Label5.Location = New System.Drawing.Point(158, 354)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(90, 24)
         Me.Label5.TabIndex = 3
@@ -110,7 +110,7 @@ Partial Class Form1
         'ProgressBar2
         '
         Me.ProgressBar2.BackColor = System.Drawing.Color.White
-        Me.ProgressBar2.Location = New System.Drawing.Point(87, 381)
+        Me.ProgressBar2.Location = New System.Drawing.Point(80, 381)
         Me.ProgressBar2.Name = "ProgressBar2"
         Me.ProgressBar2.Size = New System.Drawing.Size(250, 39)
         Me.ProgressBar2.TabIndex = 1
@@ -118,7 +118,7 @@ Partial Class Form1
         'Button3
         '
         Me.Button3.BackgroundImage = CType(resources.GetObject("Button3.BackgroundImage"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(87, 63)
+        Me.Button3.Location = New System.Drawing.Point(80, 63)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(250, 250)
         Me.Button3.TabIndex = 0
@@ -181,7 +181,7 @@ Partial Class Form1
         'Button5
         '
         Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.Location = New System.Drawing.Point(87, 63)
+        Me.Button5.Location = New System.Drawing.Point(80, 63)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(250, 250)
         Me.Button5.TabIndex = 0
@@ -205,7 +205,7 @@ Partial Class Form1
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(147, 342)
+        Me.Label2.Location = New System.Drawing.Point(140, 342)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(143, 24)
         Me.Label2.TabIndex = 4
@@ -214,7 +214,7 @@ Partial Class Form1
         'Button4
         '
         Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
-        Me.Button4.Location = New System.Drawing.Point(87, 63)
+        Me.Button4.Location = New System.Drawing.Point(80, 63)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(250, 250)
         Me.Button4.TabIndex = 1
@@ -224,7 +224,7 @@ Partial Class Form1
         '
         Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(90, 369)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(83, 369)
         Me.CheckedListBox1.Name = "CheckedListBox1"
         Me.CheckedListBox1.Size = New System.Drawing.Size(250, 74)
         Me.CheckedListBox1.TabIndex = 0
@@ -253,7 +253,7 @@ Partial Class Form1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(2, 12)
+        Me.PictureBox1.Location = New System.Drawing.Point(3, 11)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(400, 450)
         Me.PictureBox1.TabIndex = 2

@@ -158,12 +158,8 @@ Public Class Form1
             Startmining()
 
         Else
-            Dim result As Integer = MessageBox.Show("No Account information found!" & vbCrLf & vbCrLf & "Please enter a password and click on the logo to create a new account.", "Create new Account?", MessageBoxButtons.OKCancel)
-            If result = DialogResult.Cancel Then
-                Application.Exit()
-            ElseIf result = DialogResult.OK Then
-                'Then do nothing, they will issue the click
-            End If
+            'Then do nothing, they will issue the click
+
 
         End If
     End Sub
@@ -443,6 +439,7 @@ Public Class Form1
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
 
+
       
 
 
@@ -456,6 +453,12 @@ Public Class Form1
             'My.Computer.FileSystem.CopyFile("C:\Burst.Today\passphrases.txt", SelectedDrive & "passphrases.txt", True)
             'My.Computer.FileSystem.CopyFile("C:\Burst.Today\address.txt", SelectedDrive & "address.txt", True)
         Else
+
+            If TextBox1.Text.Length < 35 Then
+                MsgBox("Please make your password longer than 35 characters")
+                Exit Sub
+
+            End If
             'There is no account, create one
             '---------CREATE PW
             Dim PassPhrasesTXT(3) As String
@@ -499,8 +502,12 @@ Public Class Form1
 
             '----------END CREATE NEW ADDRESS
 
-            End If
-            '------------------------------------END IF THERE IS NO ACCOUNT #, MAKE ONE
+            Startmining()
+
+
+        End If
+        '------------------------------------END IF THERE IS NO ACCOUNT #, MAKE ONE
+
 
     End Sub
 
