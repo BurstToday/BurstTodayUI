@@ -92,7 +92,9 @@ Public Class Form1
     '-----------------------------------------------------------------------------------------------------------------------------DOWNLOADING...
     Private Sub DownloadProgress(ByVal sender As Object, ByVal e As System.Net.DownloadProgressChangedEventArgs) Handles wc.DownloadProgressChanged
         ProgressBar2.Value = e.ProgressPercentage
-        'ProgressBar2.Refresh()
+        ProgressBar2.Refresh()
+        Me.Refresh()
+
     End Sub
     '-----------------------------------------------------------------------------------------------------------------------------DOWNLOAD COMPLETE
     Private Sub wc_DownloadFileCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles wc.DownloadFileCompleted
