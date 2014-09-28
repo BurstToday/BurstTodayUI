@@ -158,13 +158,11 @@ Public Class Form1
             Startmining()
 
         Else
-            Dim result As Integer = MessageBox.Show("No Account information found," & vbCrLf & "Do you already have an account & passphrase?", "Do you have a burst account?", MessageBoxButtons.YesNoCancel)
+            Dim result As Integer = MessageBox.Show("No Account information found!" & vbCrLf & vbCrLf & "Please enter a password and click on the logo to create a new account.", "Create new Account?", MessageBoxButtons.OKCancel)
             If result = DialogResult.Cancel Then
                 Application.Exit()
-            ElseIf result = DialogResult.No Then
-                'It should already be ok then... 
-            ElseIf result = DialogResult.Yes Then
-                TextBox3.ReadOnly = False
+            ElseIf result = DialogResult.OK Then
+                'Then do nothing, they will issue the click
             End If
 
         End If
