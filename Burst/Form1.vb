@@ -6,7 +6,7 @@ Imports System.IO.Compression
 Public Class Form1
     Dim WithEvents wc As System.Net.WebClient
     Dim WithEvents wc2 As System.Net.WebClient
-    Dim Version As String = "v1.0"
+    Dim Version As String = "v1.1"
     Dim WalletDL As Integer = 0
     Dim MinerDL As Integer = 0
 
@@ -490,6 +490,11 @@ Public Class Form1
             Address = ReadAddress(0)
             Address = Address.Remove(0, InStr(Address, "->") + 2)
             Address = Address.Trim
+
+
+            Label3.Text = "#" & Address
+
+
 
             ' MsgBox("address=" & Address)
             Dim WriteAddress(5) As String
