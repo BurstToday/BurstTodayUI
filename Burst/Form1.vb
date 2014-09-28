@@ -248,13 +248,22 @@ Public Class Form1
         '---------------------SET INSTALL LOCATION-----------------------
         Dim SelectedDrive As String = ComboBox2.Text.Remove(InStr(ComboBox2.Text, " - "))
         SelectedDrive = SelectedDrive.Trim
+
+
         'Create a subfolder if there is not one, Crowetic says this will work
-        If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today.Install\") Then
+        If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today\") Then
         Else
-            My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today.Install\")
+            My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today\")
+        End If
+
+        'Create a subfolder if there is not one, Crowetic says this will work
+        If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today\Plot\") Then
+        Else
+            My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today\Plot\")
         End If
         'Set the selected spot to the locoation here. 
-        SelectedDrive = SelectedDrive & "Burst.Today.Install\"
+        SelectedDrive = SelectedDrive & "Burst.Today\Plot\"
+
         '---------------------END INSTALL LOCATION-----------------------
 
         '-------------------------------------COPY UPDATED FILES TO INSTALL LOCATION
@@ -263,15 +272,23 @@ Public Class Form1
         'Wallet
         My.Computer.FileSystem.CopyDirectory("C:\Burst.Today\Wallet\burstcoin-master\", SelectedDrive & "Burst_1.0.0\", True)
 
-        'fix the 
-
         '-------------------------------------END COPY UPDATED FILES TO INSTALL LOCATION
 
         Dim address As String = Label3.Text.Replace("#", "")
 
         '------------------WRITE RUN_GENERATE.BAT FOR THIS PLOT - GENERATES A PLOT
+        'example from here https://bitcointalk.org/index.php?topic=731923.msg8298999#msg8298999
+
+        'C:\Windows\SysWOW64\java -Xmx1000m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate *youraccount#* *plot#tostartwith* *plot#toendwith* 1000 4
+        'Xmx value
+        'accountNo
+        'startNonce
+        'endNonce (calculated)
+        'stagger
+        'cpucores
+
         Dim RunGenerate(5) As String
-        RunGenerate(0) = "C:\Windows\SysWOW64\java -Xmx" & TextBox4.Text & "m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate " & Address & " " & TextBox2.Text & " " & TrackBar1.Value * 4000 & " 1000 " & ComboBox1.Text
+        RunGenerate(0) = "C:\Windows\SysWOW64\java -Xmx" & TextBox4.Text & "m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate " & address & " " & TextBox2.Text & " " & TrackBar1.Value * 4000 & " " & TextBox3.Text & " " & ComboBox1.Text
         System.IO.File.WriteAllLines(SelectedDrive & "run_generate.bat", RunGenerate)
 
         System.Threading.Thread.Sleep(2000)
@@ -292,64 +309,65 @@ Public Class Form1
         End Try
         '------------------END WRITE RUN_GENERATE.BAT FOR THIS PLOT - NEW PLOT IS GENERATED
 
-        'zzzzz
-        System.Threading.Thread.Sleep(2000)
+
+        '----------------------------------------Start Skipping
+        If 1 = 2 Then
+            '------------------OK SO RUN.BAT WILL OPEN AND CLOSE QUICKLY
+            Try
+                Dim procInfo As New ProcessStartInfo()
+                'procInfo.UseShellExecute = True
+                procInfo.UseShellExecute = False
+                Dim JavaExe As String = SelectedDrive & "run.bat"
+                procInfo.FileName = (JavaExe)
+                procInfo.WorkingDirectory = SelectedDrive
+                procInfo.Verb = "runas"
+                Process.Start(procInfo)
+                Me.BringToFront()
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
 
 
-        '------------------OK SO RUN.BAT WILL OPEN AND CLOSE QUICKLY
-        Try
-            Dim procInfo As New ProcessStartInfo()
-            'procInfo.UseShellExecute = True
-            procInfo.UseShellExecute = False
-            Dim JavaExe As String = SelectedDrive & "run.bat"
-            procInfo.FileName = (JavaExe)
-            procInfo.WorkingDirectory = SelectedDrive
-            procInfo.Verb = "runas"
-            Process.Start(procInfo)
-            Me.BringToFront()
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+            '------------------OK SO .\BURST1.0.0\RUN.BAT WILL INSTALL
+            Try
+                Dim procInfo As New ProcessStartInfo()
+                'procInfo.UseShellExecute = True
+                procInfo.UseShellExecute = False
+                Dim JavaExe As String = SelectedDrive & "run.bat"
+                procInfo.FileName = (JavaExe)
+                procInfo.WorkingDirectory = SelectedDrive
+                procInfo.Verb = "runas"
+                Process.Start(procInfo)
+                Me.BringToFront()
 
-        System.Threading.Thread.Sleep(2000)
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
 
-        '------------------OK SO .\BURST1.0.0\RUN.BAT WILL INSTALL
-        Try
-            Dim procInfo As New ProcessStartInfo()
-            'procInfo.UseShellExecute = True
-            procInfo.UseShellExecute = False
-            Dim JavaExe As String = SelectedDrive & "run.bat"
-            procInfo.FileName = (JavaExe)
-            procInfo.WorkingDirectory = SelectedDrive
-            procInfo.Verb = "runas"
-            Process.Start(procInfo)
-            Me.BringToFront()
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+            'Wallet is open already
 
-        'Wallet is open already
+            System.Threading.Thread.Sleep(2000)
 
-        System.Threading.Thread.Sleep(2000)
+            '-----------------------RUN THE MINER
+            Try
+                Dim procInfo As New ProcessStartInfo()
+                'procInfo.UseShellExecute = True
+                procInfo.UseShellExecute = False
+                Dim JavaExe As String = SelectedDrive & "run_mine.bat"
+                procInfo.FileName = (JavaExe)
+                procInfo.WorkingDirectory = SelectedDrive
+                procInfo.Verb = "runas"
+                Process.Start(procInfo)
+                Me.BringToFront()
 
-        '-----------------------RUN THE MINER
-        Try
-            Dim procInfo As New ProcessStartInfo()
-            'procInfo.UseShellExecute = True
-            procInfo.UseShellExecute = False
-            Dim JavaExe As String = SelectedDrive & "run_mine.bat"
-            procInfo.FileName = (JavaExe)
-            procInfo.WorkingDirectory = SelectedDrive
-            procInfo.Verb = "runas"
-            Process.Start(procInfo)
-            Me.BringToFront()
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+        '----------------------------------------Done Skipping
 
         'The Final Step is to add this plot to the list so it runs on startup
         Dim myplots() As String
