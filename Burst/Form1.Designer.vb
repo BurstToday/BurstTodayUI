@@ -43,22 +43,20 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Plot = New System.Windows.Forms.TabPage()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.Update.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -228,7 +226,7 @@ Partial Class Form1
         Me.CheckedListBox1.FormattingEnabled = True
         Me.CheckedListBox1.Location = New System.Drawing.Point(83, 369)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(250, 74)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(250, 52)
         Me.CheckedListBox1.TabIndex = 0
         '
         'Wallet
@@ -271,10 +269,8 @@ Partial Class Form1
         Me.Plot.Controls.Add(Me.Button2)
         Me.Plot.Controls.Add(Me.ComboBox1)
         Me.Plot.Controls.Add(Me.TextBox4)
-        Me.Plot.Controls.Add(Me.TextBox2)
         Me.Plot.Controls.Add(Me.Label6)
         Me.Plot.Controls.Add(Me.Label4)
-        Me.Plot.Controls.Add(Me.Label13)
         Me.Plot.Controls.Add(Me.Label7)
         Me.Plot.Controls.Add(Me.Label9)
         Me.Plot.Controls.Add(Me.Label10)
@@ -283,6 +279,15 @@ Partial Class Form1
         Me.Plot.Size = New System.Drawing.Size(405, 474)
         Me.Plot.TabIndex = 2
         Me.Plot.Text = "Plot Setup"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(192, 274)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(145, 29)
+        Me.TextBox3.TabIndex = 14
+        Me.TextBox3.Text = "1000"
         '
         'TrackBar1
         '
@@ -304,7 +309,7 @@ Partial Class Form1
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(26, 407)
+        Me.Button2.Location = New System.Drawing.Point(26, 394)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(348, 53)
         Me.Button2.TabIndex = 10
@@ -315,7 +320,7 @@ Partial Class Form1
         '
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(192, 351)
+        Me.ComboBox1.Location = New System.Drawing.Point(192, 332)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(145, 32)
         Me.ComboBox1.TabIndex = 9
@@ -329,21 +334,12 @@ Partial Class Form1
         Me.TextBox4.TabIndex = 8
         Me.TextBox4.Text = "1000"
         '
-        'TextBox2
-        '
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(192, 261)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(145, 29)
-        Me.TextBox2.TabIndex = 8
-        Me.TextBox2.Text = "0"
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(69, 354)
+        Me.Label6.Location = New System.Drawing.Point(69, 335)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(103, 24)
         Me.Label6.TabIndex = 4
@@ -360,16 +356,16 @@ Partial Class Form1
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "Space to Use "
         '
-        'Label13
+        'Label7
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.White
-        Me.Label13.Location = New System.Drawing.Point(38, 264)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(134, 24)
-        Me.Label13.TabIndex = 6
-        Me.Label13.Text = "Starting Nonce"
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.White
+        Me.Label7.Location = New System.Drawing.Point(97, 277)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(75, 24)
+        Me.Label7.TabIndex = 7
+        Me.Label7.Text = "Stagger"
         '
         'Label9
         '
@@ -413,26 +409,6 @@ Partial Class Form1
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "www.burst.today"
         '
-        'TextBox3
-        '
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(192, 306)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(145, 29)
-        Me.TextBox3.TabIndex = 14
-        Me.TextBox3.Text = "1000"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(97, 309)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(75, 24)
-        Me.Label7.TabIndex = 7
-        Me.Label7.Text = "Stagger"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -469,10 +445,8 @@ Partial Class Form1
     Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label

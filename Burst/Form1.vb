@@ -243,34 +243,65 @@ Public Class Form1
         End If
         '----------------------END NOTICE OF FEE-------------------------
 
+
+        'ok so we need to set up the proper Nonce Numbers
+        Dim NextNonceNo As Integer = 0
+        If My.Computer.FileSystem.FileExists("C:\Burst.Today\LastNonceNumber.txt") Then
+            'then there are already Nonces, lets find the number
+            Try
+                Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\LastNonceNumber.txt")
+                NextNonceNo = Reader(0)
+                NextNonceNo = NextNonceNo + 1
+            Catch ex As Exception
+                MsgBox("Error Reading Nonce Numbers" & vbCrLf & vbCrLf & ex.Message)
+                Exit Sub
+            End Try
+        End If
+
+
+
         'files are already downloaded, now I'm ready to create an install
 
         '---------------------SET INSTALL LOCATION-----------------------
         Dim SelectedDrive As String = ComboBox2.Text.Remove(InStr(ComboBox2.Text, " - "))
         SelectedDrive = SelectedDrive.Trim
+        Dim ExtractDrive As String = SelectedDrive & "Burst.Today\Miner\"
 
-
-        'Create a subfolder if there is not one, Crowetic says this will work
+        'Create a subfolder if there is not one
         If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today\") Then
         Else
             My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today\")
+
+            'if it doesn't exist, extract it from zip
+            Using Zippo As Ionic.Zip.ZipFile = Ionic.Zip.ZipFile.Read("C:\Burst.Today\Miner.zip")
+                System.Threading.Thread.Sleep(100)
+                Zippo.ExtractAll(ExtractDrive, Ionic.Zip.ExtractExistingFileAction.OverwriteSilently)
+                System.Threading.Thread.Sleep(2000)
+            End Using
+
+
+
         End If
 
-        'Create a subfolder if there is not one, Crowetic says this will work
-        If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today\Plot\") Then
+        'Create a subfolder if there is not one
+        If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today\Miner\") Then
         Else
-            My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today\Plot\")
+            My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today\Miner\")
+        End If
+        'Create a subfolder if there is not one
+        If My.Computer.FileSystem.DirectoryExists(SelectedDrive & "Burst.Today\Miner\pocminer-master\") Then
+        Else
+            My.Computer.FileSystem.CreateDirectory(SelectedDrive & "Burst.Today\Miner\pocminer-master\")
         End If
         'Set the selected spot to the locoation here. 
-        SelectedDrive = SelectedDrive & "Burst.Today\Plot\"
+
+        SelectedDrive = SelectedDrive & "Burst.Today\Miner\pocminer-master\"
 
         '---------------------END INSTALL LOCATION-----------------------
 
         '-------------------------------------COPY UPDATED FILES TO INSTALL LOCATION
-        'Miner
-        My.Computer.FileSystem.CopyDirectory("C:\Burst.Today\Miner\pocminer-master", SelectedDrive, True)
-        'Wallet
-        My.Computer.FileSystem.CopyDirectory("C:\Burst.Today\Wallet\burstcoin-master\", SelectedDrive & "Burst_1.0.0\", True)
+
+        'move this to launcher for any existing plots. 
 
         '-------------------------------------END COPY UPDATED FILES TO INSTALL LOCATION
 
@@ -288,7 +319,10 @@ Public Class Form1
         'cpucores
 
         Dim RunGenerate(5) As String
-        RunGenerate(0) = "C:\Windows\SysWOW64\java -Xmx" & TextBox4.Text & "m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate " & address & " " & TextBox2.Text & " " & TrackBar1.Value * 4000 & " " & TextBox3.Text & " " & ComboBox1.Text
+        ' RunGenerate(0) = "C:\Windows\SysWOW64\java -Xmx" & TextBox4.Text & "m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate " & address & " " & TextBox2.Text & " " & TrackBar1.Value * 4000 & " " & TextBox3.Text & " " & ComboBox1.Text
+        RunGenerate(0) = "C:\Windows\SysWOW64\java -Xmx" & TextBox4.Text & "m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate " & address & " " & NextNonceNo & " " & TrackBar1.Value * 4000 & " " & TextBox3.Text & " " & ComboBox1.Text
+
+
         System.IO.File.WriteAllLines(SelectedDrive & "run_generate.bat", RunGenerate)
 
         System.Threading.Thread.Sleep(2000)
@@ -375,7 +409,7 @@ Public Class Form1
         For Each ListItem In CheckedListBox1.Items
             ReDim Preserve myplots(myplotscount)
             myplots(myplotscount) = ListItem
-            myplotscount = myplotscount
+            myplotscount = myplotscount + 1
         Next
 
         ReDim Preserve myplots(myplotscount)
@@ -383,6 +417,14 @@ Public Class Form1
         myplotscount = myplotscount
 
         System.IO.File.WriteAllLines("C:\Burst.Today\Installs.txt", myplots)
+
+
+        Dim WriteNonceNo(2) As String
+        WriteNonceNo(0) = NextNonceNo + (TrackBar1.Value * 4000)
+
+        'NextNonceNo & " " & TrackBar1.Value * 4000
+
+        System.IO.File.WriteAllLines("C:\Burst.Today\LastNonceNumber.txt", WriteNonceNo)
 
 
     End Sub
