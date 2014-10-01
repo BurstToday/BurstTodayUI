@@ -29,7 +29,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Account = New System.Windows.Forms.TabPage()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -59,7 +58,6 @@ Partial Class Form1
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.TabControl1.SuspendLayout()
         Me.Update.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Account.SuspendLayout()
         Me.Mine.SuspendLayout()
         Me.Wallet.SuspendLayout()
@@ -87,7 +85,6 @@ Partial Class Form1
         Me.Update.Controls.Add(Me.Label5)
         Me.Update.Controls.Add(Me.ProgressBar2)
         Me.Update.Controls.Add(Me.Button3)
-        Me.Update.Controls.Add(Me.PictureBox2)
         Me.Update.Location = New System.Drawing.Point(4, 22)
         Me.Update.Name = "Update"
         Me.Update.Padding = New System.Windows.Forms.Padding(3)
@@ -123,16 +120,6 @@ Partial Class Form1
         Me.Button3.Size = New System.Drawing.Size(250, 250)
         Me.Button3.TabIndex = 0
         Me.Button3.UseVisualStyleBackColor = True
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.PictureBox2.Location = New System.Drawing.Point(13, 7)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(386, 461)
-        Me.PictureBox2.TabIndex = 5
-        Me.PictureBox2.TabStop = False
-        Me.PictureBox2.Visible = False
         '
         'Account
         '
@@ -423,7 +410,6 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.Update.ResumeLayout(False)
         Me.Update.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Account.ResumeLayout(False)
         Me.Account.PerformLayout()
         Me.Mine.ResumeLayout(False)
@@ -458,7 +444,6 @@ Partial Class Form1
     Friend WithEvents TrackBar1 As System.Windows.Forms.TrackBar
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents Mine As System.Windows.Forms.TabPage
     Friend WithEvents CheckedListBox1 As System.Windows.Forms.CheckedListBox
     Friend WithEvents Button4 As System.Windows.Forms.Button

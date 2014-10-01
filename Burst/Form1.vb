@@ -170,12 +170,16 @@ Public Class Form1
 
         'set the tab
         TabControl1.SelectedIndex = 2
-        Dim count As Integer = CheckedListBox1.Items.Count
-        Dim n As Integer = 0
-        While n < count
+        'START MINERS
+        Dim xLoop As Integer = 0
+        System.Threading.Thread.Sleep(500)
+        For Each item In CheckedListBox1.Items
 
-            n = n + 1
-        End While
+            xLoop = xLoop + 1
+            Process.Start(item & "run_mine.bat")
+
+
+        Next
         TabControl1.SelectedIndex = 3
         Me.Refresh()
         StartWalletClient()
@@ -196,25 +200,50 @@ Public Class Form1
                 procInfo.WorkingDirectory = "C:\Burst.Today\Wallet\burstcoin-master\"
                 Process.Start(procInfo)
 
+                '  MsgBox("Start waiting 30s")
+                Dim n As Integer = 0
+                While n < 30 * 2
+                    System.Threading.Thread.Sleep(500)
+                    Me.Refresh()
+                    n = n + 1
+                End While
+                ' MsgBox("done")
+
+                '     System.Threading.Thread.(30000)
+
+                ' MsgBox("TABCONTROL")
+                'TabControl1.SelectedIndex = 5
+                'TabControl1.Refresh()
+                'Button2.Refresh()
+                'MsgBox("TABCONTROL2")
+
+                '--------------was button 1. Run The wallet and show the burst
+                System.Threading.Thread.Sleep(1000)
+                PictureBox1.Visible = True
+                PictureBox1.Refresh()
+                System.Threading.Thread.Sleep(2000)
+                'Clipboard.GetText()
+                Process.Start("http://localhost:8125/", Clipboard.GetText())
+
+                If 1 = 2 Then
+                    'wait 5 seconds
+                    n = 0
+                    While n < 5 * 2
+                        System.Threading.Thread.Sleep(500)
+                        Me.Refresh()
+                        n = n + 1
+                    End While
+
+                    Dim nastystring As String = "{" & Chr(34) & "secretPhrase" & Chr(34) & ":" & TextBox1.Text & ", " & Chr(34) & "recipient" & Chr(34) & ":12468105956737329840}"
+                    'Set Reward Assignment
+                    Process.Start("http://127.0.0.1:8125/burst?requestType=setRewardRecipient(" & nastystring & ")")
+
+                    MsgBox("reward set")
+                End If
+
                 Me.BringToFront()
 
-                PictureBox2.Visible = True
-                PictureBox2.Refresh()
-
-
-                System.Threading.Thread.Sleep(2500)
-                ' WebBrowser2.Refresh()
-                System.Threading.Thread.Sleep(2500)
-
-
-
-
-                TabControl1.SelectedIndex = 5
-                TabControl1.Refresh()
-                Button2.Refresh()
-
-
-                Button1.PerformClick()
+                Button4.PerformClick()
 
 
                 Me.BringToFront()
@@ -226,8 +255,6 @@ Public Class Form1
         End If
     End Sub
     '-----------------------------------------------------------------------------------------------------------------------------EndStartWalletClient
-
-
 
 
 
@@ -458,42 +485,7 @@ Public Class Form1
         Label4.Text = "Space to use (" & TrackBar1.Value & " / " & Tempstring & " GB)"
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        System.Threading.Thread.Sleep(2000)
-        PictureBox1.Visible = True
-        PictureBox1.Refresh()
-        System.Threading.Thread.Sleep(1000)
-        'Clipboard.GetText()
-        Process.Start("http://localhost:8125/", Clipboard.GetText())
-
-        System.Threading.Thread.Sleep(1000)
-        TabControl1.SelectedIndex = 2
-        System.Threading.Thread.Sleep(1000)
-        Button4.PerformClick()
-
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-
-        'START MINERS
-        Dim xLoop As Integer = 0
-        System.Threading.Thread.Sleep(500)
-        For Each item In CheckedListBox1.Items
-
-            xLoop = xLoop + 1
-            Process.Start(item & "run_mine.bat")
-
-
-        Next
-        TabControl1.SelectedIndex = 3
-        TabControl1.Refresh()
-
-        System.Threading.Thread.Sleep(5000)
-        'End StartingMiners
-
-
-
-    End Sub
+   
 
    
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
