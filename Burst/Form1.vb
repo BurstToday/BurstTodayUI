@@ -447,7 +447,7 @@ Public Class Form1
                 ocho = 0
                 While ocho < MiningConfLength
                     If ReadMiningConf(ocho).Trim = "]" Then
-                        newMiningConf(ocho) = SelectedDrive
+                        newMiningConf(ocho) = "        " & SelectedDrive.Replace("\", "\\") & "plots"
                         newMiningConf(ocho + 1) = "    ]"
                         newMiningConf(ocho + 2) = "}"
                         System.IO.File.WriteAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", newMiningConf)
