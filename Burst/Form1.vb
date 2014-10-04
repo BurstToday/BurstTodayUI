@@ -452,7 +452,7 @@ Public Class Form1
                             'then there are no plots
                         Else
                             'then there are plots
-                            newMiningConf(ocho) = newMiningConf(ocho - 1) & ","
+                            newMiningConf(ocho - 1) = newMiningConf(ocho - 1) & ","
                         End If
                         newMiningConf(ocho + 1) = "    ]"
                         newMiningConf(ocho + 2) = "}"
