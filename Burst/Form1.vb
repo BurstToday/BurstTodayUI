@@ -428,8 +428,9 @@ Public Class Form1
             Dim MiningConfLength As Integer = ReadMiningConf.Length
             Dim DoesDirectoryExist As Integer = 0
             Dim ocho As Integer = 0
+
             While ocho < MiningConfLength
-                If ReadMiningConf(ocho).Trim = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34) Then
+                If ReadMiningConf(ocho) = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34) & "," Then
                     'then directory exists
                     DoesDirectoryExist = 1
                 End If
