@@ -17,6 +17,27 @@ Public Class Form1
         Me.Text = Me.Text & " - " & Version
 
 
+        'Restore Back up mining configuration
+        If My.Computer.FileSystem.FileExists("C:\Burst.Today\mining.conf") Then
+            My.Computer.FileSystem.CopyFile("C:\Burst.Today\mining.conf", "C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", True)
+        End If
+        'Restore Back up Blockchain
+        If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\burst_db\") Then
+            My.Computer.FileSystem.CopyDirectory("C:\Burst.Today\burst_db\", "C:\Burst.Today\Wallet\burstcoin-master\burst_db\", True)
+        End If
+
+
+        'Back up mining configuration
+        If My.Computer.FileSystem.FileExists("") Then
+            My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", "", True)
+        End If
+        'Back up Blockchain
+        If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\Wallet\burstcoin-master\burst_db\") Then
+            My.Computer.FileSystem.CopyDirectory("", "", True)
+        End If
+
+
+
         '------------------------------------------------------------------------------------------------------Startup folder
         ' Dim startupfolder As String = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu)
 
