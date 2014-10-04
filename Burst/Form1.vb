@@ -295,8 +295,10 @@ Public Class Form1
 
                 '  MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
                 '      PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
-                Dim PostResult(1) As String
+                Dim PostResult(3) As String
+                PostResult(0) = "SecretPhrase=" & TextBox1.Text
                 PostResult(1) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
+                PostResult(2) = " Recipient=" & Label3.Text.Replace("#", "")
                 System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
 
 
