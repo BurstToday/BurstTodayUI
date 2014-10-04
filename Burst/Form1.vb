@@ -223,8 +223,16 @@ Public Class Form1
         Dim xLoop As Integer = 0
         System.Threading.Thread.Sleep(500)
 
+        Dim procInfo As New ProcessStartInfo()
+        procInfo.UseShellExecute = False
+        Dim JavaExe As String = "C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe"""
+        procInfo.FileName = (JavaExe)
+        procInfo.Verb = "runas"
+        procInfo.WorkingDirectory = "C:\Burst.Today\Burst.Today\BurstTodayUI-master\"
+        Process.Start(procInfo)
 
-        Process.Start("C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe")
+
+        'Process.Start("C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe")
 
      
         TabControl1.SelectedIndex = 3
