@@ -493,9 +493,10 @@ Public Class Form1
         Tempstring = Tempstring.Trim
         Tempstring = Tempstring.Replace("GB available", "")
         Tempstring = Tempstring.Trim
-        Label4.Text = "Space to use (" & TrackBar1.Value & " / " & Tempstring & " GB)"
         TrackBar1.Maximum = Tempstring
         TrackBar1.Value = 0
+        Label4.Text = "Space to use (" & TrackBar1.Value & " / " & Tempstring & " GB)"
+        
     End Sub
 
 
