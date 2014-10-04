@@ -80,6 +80,7 @@ Public Class Form1
             Else
                 Tempstring = Debug
             End If
+            ' MsgBox("tempstring=" & Tempstring)
 
 
             ' Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
@@ -87,6 +88,8 @@ Public Class Form1
 
             Tempstring = Tempstring.Trim
             Label3.Text = "#" & Tempstring
+            '   MsgBox("Label3=" & Label3.Text)
+
         Else
             TextBox1.ReadOnly = False
         End If
@@ -205,9 +208,25 @@ Public Class Form1
         'read address
         If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
             Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
-            Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+
+
+            Dim Debug As String = Reader2(0)
+            Dim Tempstring As String = ""
+            If Debug.Contains("->") Then
+                Tempstring = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+            Else
+                Tempstring = Debug
+            End If
+
+
+
+
+
+
+            'Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
             Tempstring = Tempstring.Trim
             Label3.Text = "#" & Tempstring
+            'MsgBox("_Label3=" & Label3.Text)
             ContinueOn = ContinueOn + 1
         Else
             TextBox1.ReadOnly = False
@@ -310,7 +329,7 @@ Public Class Form1
                 Dim PostResult(3) As String
                 PostResult(0) = "SecretPhrase=" & TextBox1.Text
                 PostResult(1) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
-                PostResult(2) = " Recipient=" & Label3.Text.Replace("#", "")
+                PostResult(2) = "Recipient=" & Label3.Text.Replace("#", "")
                 System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
 
 
