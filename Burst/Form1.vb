@@ -7,7 +7,7 @@ Imports System.Text
 Public Class Form1
     Dim WithEvents wc As System.Net.WebClient
     Dim WithEvents wc2 As System.Net.WebClient
-    Dim Version As String = "v1.1"
+    Dim Version As String = "v1.2"
     Dim WalletDL As Integer = 0
     Dim MinerDL As Integer = 0
 
