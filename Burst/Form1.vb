@@ -15,57 +15,77 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
         Me.Text = Me.Text & " - " & Version
-        '------------------------------------------------------------------------------------------------------Read Passphrase
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
-            Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
-            TextBox1.Text = Reader(0)
-            Clipboard.SetText(Reader(0))
-        End If
-        '------------------------------------------------------------------------------------------------------Read address
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
-            Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
-            Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
-            Tempstring = Tempstring.Trim
-            Label3.Text = "#" & Tempstring
-        Else
-            TextBox1.ReadOnly = False
-        End If
-        '------------------------------------------------------------------------------------------------------Load Existing Installs into listbox
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\Installs.txt") Then
-            Dim Reader3() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Installs.txt")
-            Dim Reader3Length As Integer = Reader3.Length
-            Dim n As Integer = 0
-            While n < Reader3Length
-                CheckedListBox1.Items.Add(Reader3(n))
-                n = n + 1
-            End While
-        Else
-            TextBox1.ReadOnly = False
-        End If
-        '------------------------------------------------------------------------------------------------------Read Drive Letters & sizes
-        Dim allDrives() As DriveInfo = DriveInfo.GetDrives()
-        Dim d As DriveInfo
-        For Each d In allDrives
-            If d.IsReady = True Then
-                If d.AvailableFreeSpace > 0 Then
-                    ComboBox2.Items.Add(d.Name & " - " & Math.Round(d.AvailableFreeSpace * (10 ^ -9), 0) & " GB available")
-                End If
+
+
+        '------------------------------------------------------------------------------------------------------Startup folder
+        ' Dim startupfolder As String = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu)
+
+        '  MsgBox(Environment.SpecialFolder.Startup.ToString & "\Burst.Today Launcher.lnk")
+
+        Dim StartupLink As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup)
+        StartupLink = StartupLink & "\Burst.Today Launcher.lnk"
+        '   MsgBox("startuplink=" & StartupLink)
+        ' Dim StartupLink2 As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup.ToString & "\Burst.Today Launcher.lnk")
+
+        Try
+            My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\Burst.Today Launcher Shortcut.lnk", StartupLink, True)
+
+        Catch ex As Exception
+            MsgBox("error " & ex.Message)
+        End Try
+    
+
+            '------------------------------------------------------------------------------------------------------Read Passphrase
+            If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
+                Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
+                TextBox1.Text = Reader(0)
+                Clipboard.SetText(Reader(0))
             End If
-        Next
+            '------------------------------------------------------------------------------------------------------Read address
+            If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
+                Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
+                Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+                Tempstring = Tempstring.Trim
+                Label3.Text = "#" & Tempstring
+            Else
+                TextBox1.ReadOnly = False
+            End If
+            '------------------------------------------------------------------------------------------------------Load Existing Installs into listbox
+            If My.Computer.FileSystem.FileExists("C:\Burst.Today\Installs.txt") Then
+                Dim Reader3() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Installs.txt")
+                Dim Reader3Length As Integer = Reader3.Length
+                Dim n As Integer = 0
+                While n < Reader3Length
+                    CheckedListBox1.Items.Add(Reader3(n))
+                    n = n + 1
+                End While
+            Else
+                TextBox1.ReadOnly = False
+            End If
+            '------------------------------------------------------------------------------------------------------Read Drive Letters & sizes
+            Dim allDrives() As DriveInfo = DriveInfo.GetDrives()
+            Dim d As DriveInfo
+            For Each d In allDrives
+                If d.IsReady = True Then
+                    If d.AvailableFreeSpace > 0 Then
+                        ComboBox2.Items.Add(d.Name & " - " & Math.Round(d.AvailableFreeSpace * (10 ^ -9), 0) & " GB available")
+                    End If
+                End If
+            Next
 
-        ComboBox2.SelectedIndex = 0
-        '------------------------------------------------------------------------------------------------------Read processor Cores
-        Dim coreCount As Integer = System.Environment.ProcessorCount
-        Dim Loopz As Integer = 1
-        While Loopz < coreCount + 1
-            ComboBox1.Items.Add(Loopz)
-            Loopz = Loopz + 1
-        End While
-        ComboBox1.SelectedIndex = 0
+            ComboBox2.SelectedIndex = 0
+            '------------------------------------------------------------------------------------------------------Read processor Cores
+            Dim coreCount As Integer = System.Environment.ProcessorCount
+            Dim Loopz As Integer = 1
+            While Loopz < coreCount + 1
+                ComboBox1.Items.Add(Loopz)
+                Loopz = Loopz + 1
+            End While
+            ComboBox1.SelectedIndex = 0
 
-        Button3.PerformClick()
+            Button3.PerformClick()
 
-        '-----------------------------------------------------------------------------------------------------------------------------FORM DONE LOADING result = Button3 
+            '-----------------------------------------------------------------------------------------------------------------------------FORM DONE LOADING result = Button3 
 
     End Sub
 
@@ -174,13 +194,11 @@ Public Class Form1
         'START MINERS
         Dim xLoop As Integer = 0
         System.Threading.Thread.Sleep(500)
-        For Each item In CheckedListBox1.Items
-
-            xLoop = xLoop + 1
-            Process.Start(item & "run_mine.bat")
 
 
-        Next
+        Process.Start("C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe")
+
+     
         TabControl1.SelectedIndex = 3
         Me.Refresh()
         StartWalletClient()
@@ -235,26 +253,11 @@ Public Class Form1
                     n = n + 1
                 End While
 
-                'Dim nastystring As String = "{" & Chr(34) & "secretPhrase" & Chr(34) & ":" & TextBox1.Text & ", " & Chr(34) & "recipient" & Chr(34) & ":12468105956737329840}"
-                'Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "recipient=12468105956737329840"
-                '  Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840" 'this worked, but missing deadline...
                 Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840&deadline=1&feeNQT=100000000"
 
-                '------------------------------------------------
+                '  MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
+                PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
 
-
-
-                MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
-
-
-
-
-                'Set Reward Assignment
-                '  Process.Start("http://127.0.0.1:8125/burst?requestType=setRewardRecipient" & nastystring)
-
-
-                MsgBox("reward set")
-                '   End If
 
                 Me.BringToFront()
 
@@ -403,86 +406,66 @@ Public Class Form1
         '------------------END WRITE RUN_GENERATE.BAT FOR THIS PLOT - NEW PLOT IS GENERATED
 
 
-        '----------------------------------------Start Skipping
         If 1 = 2 Then
-            '------------------OK SO RUN.BAT WILL OPEN AND CLOSE QUICKLY
-            Try
-                Dim procInfo As New ProcessStartInfo()
-                'procInfo.UseShellExecute = True
-                procInfo.UseShellExecute = False
-                Dim JavaExe As String = SelectedDrive & "run.bat"
-                procInfo.FileName = (JavaExe)
-                procInfo.WorkingDirectory = SelectedDrive
-                procInfo.Verb = "runas"
-                Process.Start(procInfo)
-                Me.BringToFront()
+            'The Final Step is to add this plot to the list so it runs on startup
+            Dim myplots() As String
+            Dim myplotscount As Integer = 0
+            For Each ListItem In CheckedListBox1.Items
+                ReDim Preserve myplots(myplotscount)
+                myplots(myplotscount) = ListItem
+                myplotscount = myplotscount + 1
+            Next
 
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-
-
-            '------------------OK SO .\BURST1.0.0\RUN.BAT WILL INSTALL
-            Try
-                Dim procInfo As New ProcessStartInfo()
-                'procInfo.UseShellExecute = True
-                procInfo.UseShellExecute = False
-                Dim JavaExe As String = SelectedDrive & "run.bat"
-                procInfo.FileName = (JavaExe)
-                procInfo.WorkingDirectory = SelectedDrive
-                procInfo.Verb = "runas"
-                Process.Start(procInfo)
-                Me.BringToFront()
-
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-
-            'Wallet is open already
-
-            System.Threading.Thread.Sleep(2000)
-
-            '-----------------------RUN THE MINER
-            Try
-                Dim procInfo As New ProcessStartInfo()
-                'procInfo.UseShellExecute = True
-                procInfo.UseShellExecute = False
-                Dim JavaExe As String = SelectedDrive & "run_mine.bat"
-                procInfo.FileName = (JavaExe)
-                procInfo.WorkingDirectory = SelectedDrive
-                procInfo.Verb = "runas"
-                Process.Start(procInfo)
-                Me.BringToFront()
-
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-        End If
-        '----------------------------------------Done Skipping
-
-        'The Final Step is to add this plot to the list so it runs on startup
-        Dim myplots() As String
-        Dim myplotscount As Integer = 0
-        For Each ListItem In CheckedListBox1.Items
             ReDim Preserve myplots(myplotscount)
-            myplots(myplotscount) = ListItem
-            myplotscount = myplotscount + 1
-        Next
+            myplots(myplotscount) = SelectedDrive
+            myplotscount = myplotscount
 
-        ReDim Preserve myplots(myplotscount)
-        myplots(myplotscount) = SelectedDrive
-        myplotscount = myplotscount
+            System.IO.File.WriteAllLines("C:\Burst.Today\Installs.txt", myplots)
 
-        System.IO.File.WriteAllLines("C:\Burst.Today\Installs.txt", myplots)
+        Else
+            'implement Urays Miner. Run 1 exe for all files. 
+            Dim ReadMiningConf() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf")
+            Dim MiningConfLength As Integer = ReadMiningConf.Length
+            Dim DoesDirectoryExist As Integer = 0
+            Dim ocho As Integer = 0
+            While ocho < MiningConfLength
+                If ReadMiningConf(ocho).Trim = SelectedDrive Then
+                    'then directory exists
+                    DoesDirectoryExist = 1
+                End If
+                ocho = ocho + 1
+            End While
+
+            Dim newMiningConf() As String = ReadMiningConf
+            ReDim Preserve newMiningConf(newMiningConf.Length + 1)
+
+
+
+
+            If DoesDirectoryExist = 0 Then
+                'then add the directory to the list
+                ocho = 0
+                While ocho < MiningConfLength
+                    If ReadMiningConf(ocho).Trim = "]" Then
+                        newMiningConf(ocho) = SelectedDrive
+                        newMiningConf(ocho + 1) = "    ]"
+                        newMiningConf(ocho + 2) = "}"
+                        System.IO.File.WriteAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", newMiningConf)
+                        ocho = MiningConfLength
+                    End If
+
+
+                    ocho = ocho + 1
+                End While
+
+            End If
+        End If
+
+
 
 
         Dim WriteNonceNo(2) As String
         WriteNonceNo(0) = NextNonceNo + (TrackBar1.Value * 4000)
-
-        'NextNonceNo & " " & TrackBar1.Value * 4000
-
         System.IO.File.WriteAllLines("C:\Burst.Today\LastNonceNumber.txt", WriteNonceNo)
 
 
