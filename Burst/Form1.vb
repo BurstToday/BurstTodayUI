@@ -326,11 +326,31 @@ Public Class Form1
 
                 '  MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
                 '      PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
-                Dim PostResult(3) As String
-                PostResult(0) = "SecretPhrase=" & TextBox1.Text
-                PostResult(1) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
-                PostResult(2) = "Recipient=" & Label3.Text.Replace("#", "")
-                System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
+
+                Dim PostResultExists As Integer = 0
+                If My.Computer.FileSystem.FileExists("c:\Burst.Today\postresult.txt") Then
+                    Dim ReadPostResult() As String = System.IO.File.ReadAllLines("c:\Burst.Today\postresult.txt")
+                    ReDim Preserve ReadPostResult(ReadPostResult.Length)
+                    Dim Moreloops As Integer = 0
+                    While Moreloops < ReadPostResult.Length
+                        If ReadPostResult(Moreloops).Contains("fullHash") Then
+                            PostResultExists = 1
+                        End If
+
+                        Moreloops = Moreloops + 1
+                    End While
+
+
+                End If
+
+                If PostResultExists = 0 Then
+                    Dim PostResult(3) As String
+                    PostResult(0) = "SecretPhrase=" & TextBox1.Text
+                    PostResult(1) = "Recipient=" & Label3.Text.Replace("#", "")
+                    PostResult(2) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
+                    System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
+                End If
+               
 
 
                 Me.BringToFront()
