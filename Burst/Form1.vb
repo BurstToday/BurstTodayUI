@@ -429,7 +429,7 @@ Public Class Form1
             Dim DoesDirectoryExist As Integer = 0
             Dim ocho As Integer = 0
             While ocho < MiningConfLength
-                If ReadMiningConf(ocho).Trim = SelectedDrive Then
+                If ReadMiningConf(ocho).Trim = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34) Then
                     'then directory exists
                     DoesDirectoryExist = 1
                 End If
@@ -452,7 +452,7 @@ Public Class Form1
                             'then there are no plots
                         Else
                             'then there are plots
-                            newMiningConf(ocho) = newMiningConf(ocho) & ","
+                            newMiningConf(ocho) = newMiningConf(ocho - 1) & ","
                         End If
                         newMiningConf(ocho + 1) = "    ]"
                         newMiningConf(ocho + 2) = "}"
