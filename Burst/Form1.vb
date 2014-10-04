@@ -2,6 +2,7 @@
 Imports System.Collections.Generic
 Imports System.IO
 Imports System.IO.Compression
+Imports System.Text
 
 Public Class Form1
     Dim WithEvents wc As System.Net.WebClient
@@ -225,21 +226,35 @@ Public Class Form1
                 'Clipboard.GetText()
                 Process.Start("http://localhost:8125/", Clipboard.GetText())
 
-                If 1 = 2 Then
-                    'wait 5 seconds
-                    n = 0
-                    While n < 5 * 2
-                        System.Threading.Thread.Sleep(500)
-                        Me.Refresh()
-                        n = n + 1
-                    End While
+                ' If 1 = 2 Then
+                'wait 5 seconds
+                n = 0
+                While n < 5 * 2
+                    System.Threading.Thread.Sleep(500)
+                    Me.Refresh()
+                    n = n + 1
+                End While
 
-                    Dim nastystring As String = "{" & Chr(34) & "secretPhrase" & Chr(34) & ":" & TextBox1.Text & ", " & Chr(34) & "recipient" & Chr(34) & ":12468105956737329840}"
-                    'Set Reward Assignment
-                    Process.Start("http://127.0.0.1:8125/burst?requestType=setRewardRecipient(" & nastystring & ")")
+                'Dim nastystring As String = "{" & Chr(34) & "secretPhrase" & Chr(34) & ":" & TextBox1.Text & ", " & Chr(34) & "recipient" & Chr(34) & ":12468105956737329840}"
+                'Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "recipient=12468105956737329840"
+                '  Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840" 'this worked, but missing deadline...
+                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840&deadline=1&feeNQT=100000000"
 
-                    MsgBox("reward set")
-                End If
+                '------------------------------------------------
+
+
+
+                MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
+
+
+
+
+                'Set Reward Assignment
+                '  Process.Start("http://127.0.0.1:8125/burst?requestType=setRewardRecipient" & nastystring)
+
+
+                MsgBox("reward set")
+                '   End If
 
                 Me.BringToFront()
 
@@ -256,6 +271,23 @@ Public Class Form1
     End Sub
     '-----------------------------------------------------------------------------------------------------------------------------EndStartWalletClient
 
+    Public Function PostData(ByRef URL As String, ByRef POST As String, ByRef cookie As System.Net.CookieContainer)
+        Dim request As System.Net.HttpWebRequest
+        Dim response As System.Net.HttpWebResponse
+        request = CType(System.Net.WebRequest.Create(URL), System.Net.HttpWebRequest)
+        request.ContentType = "application/x-www-form-urlencoded"
+        'MsgBox(POST)
+        request.Method = "POST"
+        request.AllowAutoRedirect = False
+        Dim requestStream As Stream = request.GetRequestStream
+        Dim postBytes As Byte() = Encoding.ASCII.GetBytes(POST)
+        requestStream.Write(postBytes, 0, postBytes.Length)
+        requestStream.Close()
+        response = CType(request.GetResponse(), System.Net.HttpWebResponse)
+        Return New StreamReader(response.GetResponseStream()).ReadToEnd()
+
+
+    End Function
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -476,7 +508,7 @@ Public Class Form1
         TrackBar1.Value = 0
     End Sub
 
-   
+
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
         Dim Tempstring As String = ComboBox2.Text.Remove(0, InStr(ComboBox2.Text, " - ") + 2)
         Tempstring = Tempstring.Trim
@@ -485,14 +517,14 @@ Public Class Form1
         Label4.Text = "Space to use (" & TrackBar1.Value & " / " & Tempstring & " GB)"
     End Sub
 
-   
 
-   
+
+
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
 
 
-      
+
 
 
         System.Threading.Thread.Sleep(1000)
@@ -568,5 +600,5 @@ Public Class Form1
 
     End Sub
 
-   
+
 End Class

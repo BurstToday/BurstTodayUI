@@ -1,0 +1,3 @@
+   	"c:\\pocminer_v1\\plots",
+    	"c:\\plots"
+
