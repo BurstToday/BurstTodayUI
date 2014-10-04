@@ -70,14 +70,26 @@ Public Class Form1
                 Clipboard.SetText(Reader(0))
             End If
             '------------------------------------------------------------------------------------------------------Read address
-            If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
-                Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
-                Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
-                Tempstring = Tempstring.Trim
-                Label3.Text = "#" & Tempstring
+        If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
+            Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
+
+            Dim Debug As String = Reader2(0)
+            Dim Tempstring As String = ""
+            If Debug.Contains("->") Then
+                Tempstring = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
             Else
-                TextBox1.ReadOnly = False
+                Tempstring = Debug
             End If
+
+
+            ' Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+          
+
+            Tempstring = Tempstring.Trim
+            Label3.Text = "#" & Tempstring
+        Else
+            TextBox1.ReadOnly = False
+        End If
             '------------------------------------------------------------------------------------------------------Load Existing Installs into listbox
             If My.Computer.FileSystem.FileExists("C:\Burst.Today\Installs.txt") Then
                 Dim Reader3() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Installs.txt")
