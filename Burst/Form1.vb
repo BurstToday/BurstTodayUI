@@ -36,16 +36,32 @@ Public Class Form1
 
         Dim StartupLink As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup)
         StartupLink = StartupLink & "\Burst.Today Launcher.lnk"
-        '   MsgBox("startuplink=" & StartupLink)
-        ' Dim StartupLink2 As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup.ToString & "\Burst.Today Launcher.lnk")
-
         Try
             My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\Burst.Today Launcher Shortcut.lnk", StartupLink, True)
 
         Catch ex As Exception
             MsgBox("error " & ex.Message)
         End Try
-    
+
+
+
+        '
+        Dim StartMenuLink As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu)
+        StartMenuLink = StartMenuLink & "\"
+        '  MsgBox(StartMenuLink)
+        Try
+            If My.Computer.FileSystem.DirectoryExists(StartMenuLink & "Burst.Today\") Then
+            Else
+                My.Computer.FileSystem.CreateDirectory(StartMenuLink & "Burst.Today\")
+            End If
+
+            My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\Burst.Today Launcher Shortcut.lnk", StartMenuLink & "Burst.Today\Burst.Today Launcher Shortcut.lnk", True)
+
+        Catch ex As Exception
+            MsgBox("error " & ex.Message)
+        End Try
+
+
 
             '------------------------------------------------------------------------------------------------------Read Passphrase
             If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
