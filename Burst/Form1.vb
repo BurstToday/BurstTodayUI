@@ -289,7 +289,9 @@ Public Class Form1
                     n = n + 1
                 End While
 
-                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840&deadline=1&feeNQT=100000000"
+                ' Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840&deadline=1&feeNQT=100000000"
+                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & Label3.Text.Replace("#", "") & "&deadline=1&feeNQT=100000000"
+
 
                 '  MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
                 PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
