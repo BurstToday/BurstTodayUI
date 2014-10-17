@@ -369,19 +369,25 @@ Public Class Form1
     '-----------------------------------------------------------------------------------------------------------------------------EndStartWalletClient
 
     Public Function PostData(ByRef URL As String, ByRef POST As String, ByRef cookie As System.Net.CookieContainer)
-        Dim request As System.Net.HttpWebRequest
-        Dim response As System.Net.HttpWebResponse
-        request = CType(System.Net.WebRequest.Create(URL), System.Net.HttpWebRequest)
-        request.ContentType = "application/x-www-form-urlencoded"
-        'MsgBox(POST)
-        request.Method = "POST"
-        request.AllowAutoRedirect = False
-        Dim requestStream As Stream = request.GetRequestStream
-        Dim postBytes As Byte() = Encoding.ASCII.GetBytes(POST)
-        requestStream.Write(postBytes, 0, postBytes.Length)
-        requestStream.Close()
-        response = CType(request.GetResponse(), System.Net.HttpWebResponse)
-        Return New StreamReader(response.GetResponseStream()).ReadToEnd()
+        Try
+            Dim request As System.Net.HttpWebRequest
+            Dim response As System.Net.HttpWebResponse
+            request = CType(System.Net.WebRequest.Create(URL), System.Net.HttpWebRequest)
+            request.ContentType = "application/x-www-form-urlencoded"
+            'MsgBox(POST)
+            request.Method = "POST"
+            request.AllowAutoRedirect = False
+            Dim requestStream As Stream = request.GetRequestStream
+            Dim postBytes As Byte() = Encoding.ASCII.GetBytes(POST)
+            requestStream.Write(postBytes, 0, postBytes.Length)
+            requestStream.Close()
+            response = CType(request.GetResponse(), System.Net.HttpWebResponse)
+            Return New StreamReader(response.GetResponseStream()).ReadToEnd()
+        Catch ex As Exception
+            MsgBox("Error Setting Reward Recipient:" & vbCrLf & ex.Message)
+            Return "error"
+        End Try
+      
 
 
     End Function
@@ -687,6 +693,10 @@ Public Class Form1
 
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
     End Sub
 End Class
