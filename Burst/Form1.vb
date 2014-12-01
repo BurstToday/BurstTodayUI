@@ -5,106 +5,111 @@ Imports System.IO.Compression
 Imports System.Text
 
 Public Class Form1
+    'Declare Public Variables
     Dim WithEvents wc As System.Net.WebClient
     Dim WithEvents wc2 As System.Net.WebClient
-    Dim Version As String = "v1.3"
+    Dim Version As String = "v1.5"
     Dim WalletDL As Integer = 0
     Dim MinerDL As Integer = 0
+    Dim ErrorLog(99) As String
+    Dim ErrorLogCount As Integer = 0
 
     '-----------------------------------------------------------------------------------------------------------------------------FORM LOADS
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.CenterToScreen()
-        Me.Text = Me.Text & " - " & Version
 
-
-        'Restore Back up mining configuration
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\mining.conf") Then
-            My.Computer.FileSystem.CopyFile("C:\Burst.Today\mining.conf", "C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", True)
-        End If
-        'Restore Back up Blockchain
-        If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\burst_db\") Then
-            My.Computer.FileSystem.CopyDirectory("C:\Burst.Today\burst_db\", "C:\Burst.Today\Wallet\burstcoin-master\burst_db\", True)
-        End If
-
-
-
-
-        '------------------------------------------------------------------------------------------------------Startup folder
-        ' Dim startupfolder As String = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu)
-
-        '  MsgBox(Environment.SpecialFolder.Startup.ToString & "\Burst.Today Launcher.lnk")
-
-        Dim StartupLink As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup)
-        StartupLink = StartupLink & "\Burst.Today Launcher.lnk"
+        Label8.Text = "Centering screen"
+        Label8.Refresh()
         Try
-            My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\Burst.Today Launcher Shortcut.lnk", StartupLink, True)
-
+            'Center the form on the screen
+            Me.CenterToScreen()
         Catch ex As Exception
-            MsgBox("error " & ex.Message)
+            ErrorLog(ErrorLogCount) = "Centering Form = Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
         End Try
 
-
-
-        '
-        Dim StartMenuLink As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu)
-        StartMenuLink = StartMenuLink & "\"
-        '  MsgBox(StartMenuLink)
+        Label8.Text = "Setting Version Number"
+        Label8.Refresh()
         Try
+            'set the version number output
+            Me.Text = Me.Text & " - " & Version
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Set Version Number - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
+
+        Label8.Text = "Backup mining configuration"
+        Label8.Refresh()
+        Try
+            'Restore Back up mining configuration
+            If My.Computer.FileSystem.FileExists("C:\Burst.Today\mining.conf") Then
+                'if the mining configuration file exists, copy it back to the mining folder 
+                My.Computer.FileSystem.CopyFile("C:\Burst.Today\mining.conf", "C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", True)
+            End If
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Restore Backup mining configuration - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
+
+        Label8.Text = "Backup Blockchain"
+        Label8.Refresh()
+        Try
+            'Restore Back up Blockchain
+            If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\burst_db\") Then
+                'if the blockchain is already downloaded, copy it back to the wallet folder
+                My.Computer.FileSystem.CopyDirectory("C:\Burst.Today\burst_db\", "C:\Burst.Today\Wallet\burstcoin-master\burst_db\", True)
+            End If
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Restore Backup Blockchain - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
+
+        Label8.Text = "Startup Folder Link"
+        Label8.Refresh()
+        Try
+            'Create link in startup folder
+            Dim StartupLink As String = Environment.GetFolderPath(Environment.SpecialFolder.Startup)
+            'Create the startup folder shortcut
+            StartupLink = StartupLink & "\Burst.Today Launcher.lnk"
+            'copy the latest Launcher shortcut to the 
+            My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\Burst.Today Launcher Shortcut.lnk", StartupLink, True)
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Startup Folder - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
+
+        Label8.Text = "Start Menu Link"
+        Label8.Refresh()
+        Try
+            'Create link in start Menu
+            Dim StartMenuLink As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu)
+            StartMenuLink = StartMenuLink & "\"
+            '  MsgBox(StartMenuLink)
             If My.Computer.FileSystem.DirectoryExists(StartMenuLink & "Burst.Today\") Then
             Else
                 My.Computer.FileSystem.CreateDirectory(StartMenuLink & "Burst.Today\")
             End If
-
             My.Computer.FileSystem.CopyFile("C:\Burst.Today\Burst.Today\BurstTodayUI-master\Burst.Today Launcher Shortcut.lnk", StartMenuLink & "Burst.Today\Burst.Today Launcher Shortcut.lnk", True)
 
         Catch ex As Exception
-            MsgBox("error " & ex.Message)
+            ErrorLog(ErrorLogCount) = "Start Menu - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
         End Try
 
-
-
-            '------------------------------------------------------------------------------------------------------Read Passphrase
-            If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
-                Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
-                TextBox1.Text = Reader(0)
-                Clipboard.SetText(Reader(0))
-            End If
-            '------------------------------------------------------------------------------------------------------Read address
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
-            Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
-
-            Dim Debug As String = Reader2(0)
-            Dim Tempstring As String = ""
-            If Debug.Contains("->") Then
-                Tempstring = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
-            Else
-                Tempstring = Debug
-            End If
-            ' MsgBox("tempstring=" & Tempstring)
-
-
-            ' Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
-          
-
-            Tempstring = Tempstring.Trim
-            Label3.Text = "#" & Tempstring
-            '   MsgBox("Label3=" & Label3.Text)
-
-        Else
-            TextBox1.ReadOnly = False
-        End If
-            '------------------------------------------------------------------------------------------------------Load Existing Installs into listbox
-            If My.Computer.FileSystem.FileExists("C:\Burst.Today\Installs.txt") Then
-                Dim Reader3() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Installs.txt")
-                Dim Reader3Length As Integer = Reader3.Length
-                Dim n As Integer = 0
-                While n < Reader3Length
-                    CheckedListBox1.Items.Add(Reader3(n))
-                    n = n + 1
-                End While
-            Else
-                TextBox1.ReadOnly = False
-            End If
+        Label8.Text = "Read Drive Letters and sizes"
+        Label8.Refresh()
+        Try
             '------------------------------------------------------------------------------------------------------Read Drive Letters & sizes
             Dim allDrives() As DriveInfo = DriveInfo.GetDrives()
             Dim d As DriveInfo
@@ -115,7 +120,16 @@ Public Class Form1
                     End If
                 End If
             Next
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Read Drives - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
 
+        Label8.Text = "Get Processor Core Count"
+        Label8.Refresh()
+        Try
             ComboBox2.SelectedIndex = 0
             '------------------------------------------------------------------------------------------------------Read processor Cores
             Dim coreCount As Integer = System.Environment.ProcessorCount
@@ -125,30 +139,48 @@ Public Class Form1
                 Loopz = Loopz + 1
             End While
             ComboBox1.SelectedIndex = 0
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Read Processor Cores - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
 
-            Button3.PerformClick()
+        Label8.Text = "Initialization Complete!"
+        Label8.Refresh()
+        Button3.PerformClick()
 
-            '-----------------------------------------------------------------------------------------------------------------------------FORM DONE LOADING result = Button3 
+        '-----------------------------------------------------------------------------------------------------------------------------FORM DONE LOADING result = Button3 
 
     End Sub
 
 
     '-----------------------------------------------------------------------------------------------------------------------------BUTTON 3 - Update Launcher
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        'Download Launcher files from Github
-        If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\Launcher") Then
-        Else
-            My.Computer.FileSystem.CreateDirectory("C:\Burst.Today\Launcher")
-        End If
-        System.Threading.Thread.Sleep(500)
-        'Burst.Today Launcher
-        Dim URL As String = "https://github.com/BurstToday/Burst.Today-Launcher/archive/master.zip"
-        Dim Path As String = "C:\Burst.Today\Launcher.zip"
-        wc = New System.Net.WebClient
-        wc.DownloadFileAsync(New Uri(URL), Path)
-        ProgressBar2.Value = 0
-        ProgressBar2.Maximum = 110
-        System.Threading.Thread.Sleep(500)
+        Label8.Text = "Updating Launcher"
+        Label8.Refresh()
+        Try
+            'Download Launcher files from Github
+            If My.Computer.FileSystem.DirectoryExists("C:\Burst.Today\Launcher") Then
+            Else
+                My.Computer.FileSystem.CreateDirectory("C:\Burst.Today\Launcher")
+            End If
+            System.Threading.Thread.Sleep(500)
+            'Burst.Today Launcher
+            Dim URL As String = "https://github.com/BurstToday/Burst.Today-Launcher/archive/master.zip"
+            Dim Path As String = "C:\Burst.Today\Launcher.zip"
+            wc = New System.Net.WebClient
+            wc.DownloadFileAsync(New Uri(URL), Path)
+            ProgressBar2.Value = 0
+            ProgressBar2.Maximum = 110
+            System.Threading.Thread.Sleep(500)
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Updating Launcher - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
+       
     End Sub
     '-----------------------------------------------------------------------------------------------------------------------------END BUTTON 3, Result = DownloadFile Complete
 
@@ -169,6 +201,8 @@ Public Class Form1
             Else
                 'Extract the launcher
                 Using Zippo As Ionic.Zip.ZipFile = Ionic.Zip.ZipFile.Read("C:\Burst.Today\Launcher.zip")
+                    Label8.Text = "Extracting Launcher"
+                    Label8.Refresh()
                     System.Threading.Thread.Sleep(100)
                     Zippo.ExtractAll("C:\Burst.Today\Launcher\", Ionic.Zip.ExtractExistingFileAction.OverwriteSilently)
                     ProgressBar2.Value = 110
@@ -185,6 +219,11 @@ Public Class Form1
         Catch ex As Exception
             ProgressBar2.ForeColor = Color.Red
             ProgressBar2.Refresh()
+
+            ErrorLog(ErrorLogCount) = "Launcher Download - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
         End Try
 
     End Sub
@@ -192,82 +231,101 @@ Public Class Form1
 
     '-----------------------------------------------------------------------------------------------------------------------------Accountinfo
     Private Sub AccountInfo()
+        Label8.Text = "Account Info"
+        Label8.Refresh()
+
+
         'Show it
         TabControl1.SelectedIndex = 1
         Dim ContinueOn As Integer = 0
 
-        'read settings
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
-            Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
-            TextBox1.Text = Reader(0)
-            Clipboard.SetText(Reader(0))
-            ContinueOn = ContinueOn + 1
-        Else
-            'no passphrase.... 
-        End If
-        'read address
-        If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
-            Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
-
-
-            Dim Debug As String = Reader2(0)
-            Dim Tempstring As String = ""
-            If Debug.Contains("->") Then
-                Tempstring = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+        Label8.Text = "Read Passphrase"
+        Label8.Refresh()
+        Try
+            'read settings
+            If My.Computer.FileSystem.FileExists("C:\Burst.Today\passphrases.txt") Then
+                Dim Reader() As String = System.IO.File.ReadAllLines("C:\Burst.Today\passphrases.txt")
+                TextBox1.Text = Reader(0)
+                Clipboard.SetText(Reader(0))
+                ContinueOn = ContinueOn + 1
             Else
-                Tempstring = Debug
+                'no passphrase.... 
             End If
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Read Passphrase - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
 
-
-
-
-
-
-            'Dim Tempstring As String = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
-            Tempstring = Tempstring.Trim
-            Label3.Text = "#" & Tempstring
-            'MsgBox("_Label3=" & Label3.Text)
-            ContinueOn = ContinueOn + 1
-        Else
-            TextBox1.ReadOnly = False
-        End If
+        Label8.Text = "Read Address"
+        Label8.Refresh()
+        Try
+            'read address
+            If My.Computer.FileSystem.FileExists("C:\Burst.Today\address.txt") Then
+                Dim Reader2() As String = System.IO.File.ReadAllLines("C:\Burst.Today\address.txt")
+                Dim Debug As String = Reader2(0)
+                Dim Tempstring As String = ""
+                If Debug.Contains("->") Then
+                    Tempstring = Reader2(0).Remove(0, InStr(Reader2(0), "->") + 1)
+                Else
+                    Tempstring = Debug
+                End If
+                Tempstring = Tempstring.Trim
+                Label3.Text = "#" & Tempstring
+                ContinueOn = ContinueOn + 1
+            Else
+                'allow them to type
+                TextBox1.ReadOnly = False
+            End If
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Read Address - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
+       
 
         If ContinueOn = 2 Then
+            Label8.Text = "Start Mining"
+            Label8.Refresh()
             Me.Refresh()
             System.Threading.Thread.Sleep(1000)
             Startmining()
-
         Else
-            'Then do nothing, they will issue the click
-
-
+            Label8.Text = "Waiting for user to create a password"
+            Label8.Refresh()
+            'Then do nothing, they will issue the click to create a password and whatnot
         End If
     End Sub
     '-----------------------------------------------------------------------------------------------------------------------------End Accountinfo, Result = StartMining
 
     '-----------------------------------------------------------------------------------------------------------------------------StartMining
     Public Sub Startmining()
+       
+        Try
+            'set the tab
+            TabControl1.SelectedIndex = 2
+            'START MINERS
+            Dim xLoop As Integer = 0
+            System.Threading.Thread.Sleep(500)
 
-        'set the tab
-        TabControl1.SelectedIndex = 2
-        'START MINERS
-        Dim xLoop As Integer = 0
-        System.Threading.Thread.Sleep(500)
-
-        Dim procInfo As New ProcessStartInfo()
-        procInfo.UseShellExecute = False
-        Dim JavaExe As String = "C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe"""
-        procInfo.FileName = (JavaExe)
-        procInfo.Verb = "runas"
-        procInfo.WorkingDirectory = "C:\Burst.Today\Burst.Today\BurstTodayUI-master\"
-        Process.Start(procInfo)
-
-
-        'Process.Start("C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe")
-
-     
+            Dim procInfo As New ProcessStartInfo()
+            procInfo.UseShellExecute = False
+            Dim JavaExe As String = "C:\Burst.Today\Burst.Today\BurstTodayUI-master\burst-miner.exe"""
+            procInfo.FileName = (JavaExe)
+            procInfo.Verb = "runas"
+            procInfo.WorkingDirectory = "C:\Burst.Today\Burst.Today\BurstTodayUI-master\"
+            Process.Start(procInfo)
+        Catch ex As Exception
+            ErrorLog(ErrorLogCount) = "Start Miner - Failure: " & ex.Message
+            ErrorLogCount = ErrorLogCount + 1
+            ReDim Preserve ErrorLog(ErrorLogCount)
+            System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+        End Try
         TabControl1.SelectedIndex = 3
         Me.Refresh()
+
         StartWalletClient()
     End Sub
     '-----------------------------------------------------------------------------------------------------------------------------StartMining, Result = StartWalletClient
@@ -276,6 +334,8 @@ Public Class Form1
     Private Sub StartWalletClient()
         System.Threading.Thread.Sleep(500)
         If My.Computer.FileSystem.FileExists("C:\Burst.Today\Wallet\burstcoin-master\burst.jar") Then
+            Label8.Text = "Start Wallet"
+            Label8.Refresh()
             Try
 
                 Dim procInfo As New ProcessStartInfo()
@@ -285,47 +345,71 @@ Public Class Form1
                 procInfo.Verb = "runas"
                 procInfo.WorkingDirectory = "C:\Burst.Today\Wallet\burstcoin-master\"
                 Process.Start(procInfo)
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                ErrorLog(ErrorLogCount) = "Start Wallet - Failure: " & ex.Message
+                ErrorLogCount = ErrorLogCount + 1
+                ReDim Preserve ErrorLog(ErrorLogCount)
+                System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+            End Try
+
+
+            Try
+                Label8.Text = "waiting"
+                Label8.Refresh()
 
                 '  MsgBox("Start waiting 30s")
                 Dim n As Integer = 0
                 While n < 30 * 2
+                    Label8.Text = Label8.Text & "."
+                    Label8.Refresh()
+
                     System.Threading.Thread.Sleep(500)
                     Me.Refresh()
                     n = n + 1
                 End While
-                ' MsgBox("done")
+            Catch ex As Exception
+                ErrorLog(ErrorLogCount) = "Waiting - Failure: " & ex.Message
+                ErrorLogCount = ErrorLogCount + 1
+                ReDim Preserve ErrorLog(ErrorLogCount)
+                System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+            End Try
 
-                '     System.Threading.Thread.(30000)
+            '--------------Run The wallet and show the burst
+            System.Threading.Thread.Sleep(1000)
+            PictureBox1.Visible = True
+            PictureBox1.Refresh()
+            System.Threading.Thread.Sleep(2000)
 
-                ' MsgBox("TABCONTROL")
-                'TabControl1.SelectedIndex = 5
-                'TabControl1.Refresh()
-                'Button2.Refresh()
-                'MsgBox("TABCONTROL2")
 
-                '--------------was button 1. Run The wallet and show the burst
-                System.Threading.Thread.Sleep(1000)
-                PictureBox1.Visible = True
-                PictureBox1.Refresh()
-                System.Threading.Thread.Sleep(2000)
-                'Clipboard.GetText()
+
+            Label8.Text = "opening wallet"
+            Label8.Refresh()
+
+            Try
                 Process.Start("http://localhost:8125/", Clipboard.GetText())
 
-                ' If 1 = 2 Then
                 'wait 5 seconds
-                n = 0
+                Dim n As Integer = 0
                 While n < 5 * 2
+                    Label8.Text = Label8.Text & "."
+                    Label8.Refresh()
                     System.Threading.Thread.Sleep(500)
                     Me.Refresh()
                     n = n + 1
                 End While
-
-                ' Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840&deadline=1&feeNQT=100000000"
-                ' Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & Label3.Text.Replace("#", "") & "&deadline=1&feeNQT=100000000"
-                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=12468105956737329840" & "&deadline=1&feeNQT=100000000"
-
-                '  MsgBox(PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer))
-                '      PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
+            Catch ex As Exception
+                ErrorLog(ErrorLogCount) = "Open Wallet - Failure: " & ex.Message
+                ErrorLogCount = ErrorLogCount + 1
+                ReDim Preserve ErrorLog(ErrorLogCount)
+                System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
+            End Try
+           
+            Label8.Text = "Set Mining Pool Recipient"
+            Label8.Refresh()
+            Try
+                Dim address = Label3.Text.Replace("#", "")
+                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & address & "&deadline=1&feeNQT=100000000"
 
                 Dim PostResultExists As Integer = 0
                 If My.Computer.FileSystem.FileExists("c:\Burst.Today\postresult.txt") Then
@@ -336,11 +420,8 @@ Public Class Form1
                         If ReadPostResult(Moreloops).Contains("fullHash") Then
                             PostResultExists = 1
                         End If
-
                         Moreloops = Moreloops + 1
                     End While
-
-
                 End If
 
                 If PostResultExists = 0 Then
@@ -350,19 +431,23 @@ Public Class Form1
                     PostResult(2) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
                     System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
                 End If
-               
-
-
-                Me.BringToFront()
-
-                Button4.PerformClick()
-
-
-                Me.BringToFront()
 
             Catch ex As Exception
-                MsgBox(ex.Message)
+                ErrorLog(ErrorLogCount) = "Set Recipient - Failure: " & ex.Message
+                ErrorLogCount = ErrorLogCount + 1
+                ReDim Preserve ErrorLog(ErrorLogCount)
+                System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
             End Try
+            Me.BringToFront()
+
+            'button on the mine tab
+            ' Button4.PerformClick()
+            Label8.Text = "Welcome to Burst.Today!"
+            Label8.Refresh()
+            ' Me.BringToFront()
+            TabControl1.SelectedIndex = 4
+            Me.Refresh()
+
 
         End If
     End Sub
@@ -374,7 +459,6 @@ Public Class Form1
             Dim response As System.Net.HttpWebResponse
             request = CType(System.Net.WebRequest.Create(URL), System.Net.HttpWebRequest)
             request.ContentType = "application/x-www-form-urlencoded"
-            'MsgBox(POST)
             request.Method = "POST"
             request.AllowAutoRedirect = False
             Dim requestStream As Stream = request.GetRequestStream
@@ -387,12 +471,10 @@ Public Class Form1
             MsgBox("Error Setting Reward Recipient:" & vbCrLf & ex.Message)
             Return "error"
         End Try
-      
-
 
     End Function
 
-
+    '------------------------------------------------------------------------------------------------Start plotting
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
         '----------------------NOTICE OF FEE-------------------------
@@ -506,66 +588,48 @@ Public Class Form1
         '------------------END WRITE RUN_GENERATE.BAT FOR THIS PLOT - NEW PLOT IS GENERATED
 
 
-        If 1 = 2 Then
-            'The Final Step is to add this plot to the list so it runs on startup
-            Dim myplots() As String
-            Dim myplotscount As Integer = 0
-            For Each ListItem In CheckedListBox1.Items
-                ReDim Preserve myplots(myplotscount)
-                myplots(myplotscount) = ListItem
-                myplotscount = myplotscount + 1
-            Next
+        'implement Urays Miner. Run 1 exe for all files. 
+        Dim ReadMiningConf() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf")
+        Dim MiningConfLength As Integer = ReadMiningConf.Length
+        Dim DoesDirectoryExist As Integer = 0
+        Dim ocho As Integer = 0
 
-            ReDim Preserve myplots(myplotscount)
-            myplots(myplotscount) = SelectedDrive
-            myplotscount = myplotscount
+        While ocho < MiningConfLength
+            If ReadMiningConf(ocho) = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34) & "," Then
+                'then directory exists
+                DoesDirectoryExist = 1
+            End If
+            ocho = ocho + 1
+        End While
 
-            System.IO.File.WriteAllLines("C:\Burst.Today\Installs.txt", myplots)
+        Dim newMiningConf() As String = ReadMiningConf
+        ReDim Preserve newMiningConf(newMiningConf.Length + 1)
 
-        Else
-            'implement Urays Miner. Run 1 exe for all files. 
-            Dim ReadMiningConf() As String = System.IO.File.ReadAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf")
-            Dim MiningConfLength As Integer = ReadMiningConf.Length
-            Dim DoesDirectoryExist As Integer = 0
-            Dim ocho As Integer = 0
 
+
+
+        If DoesDirectoryExist = 0 Then
+            'then add the directory to the list
+            ocho = 0
             While ocho < MiningConfLength
-                If ReadMiningConf(ocho) = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34) & "," Then
-                    'then directory exists
-                    DoesDirectoryExist = 1
+                If ReadMiningConf(ocho).Trim = "]" Then
+                    newMiningConf(ocho) = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34)
+                    If ReadMiningConf(ocho - 1).Trim = "[" Then
+                        'then there are no plots
+                    Else
+                        'then there are plots
+                        newMiningConf(ocho - 1) = newMiningConf(ocho - 1) & ","
+                    End If
+                    newMiningConf(ocho + 1) = "    ]"
+                    newMiningConf(ocho + 2) = "}"
+                    System.IO.File.WriteAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", newMiningConf)
+                    ocho = MiningConfLength
                 End If
+
+
                 ocho = ocho + 1
             End While
 
-            Dim newMiningConf() As String = ReadMiningConf
-            ReDim Preserve newMiningConf(newMiningConf.Length + 1)
-
-
-
-
-            If DoesDirectoryExist = 0 Then
-                'then add the directory to the list
-                ocho = 0
-                While ocho < MiningConfLength
-                    If ReadMiningConf(ocho).Trim = "]" Then
-                        newMiningConf(ocho) = "        " & Chr(34) & SelectedDrive.Replace("\", "\\") & "plots" & Chr(34)
-                        If ReadMiningConf(ocho - 1).Trim = "[" Then
-                            'then there are no plots
-                        Else
-                            'then there are plots
-                            newMiningConf(ocho - 1) = newMiningConf(ocho - 1) & ","
-                        End If
-                        newMiningConf(ocho + 1) = "    ]"
-                        newMiningConf(ocho + 2) = "}"
-                        System.IO.File.WriteAllLines("C:\Burst.Today\Burst.Today\BurstTodayUI-master\mining.conf", newMiningConf)
-                        ocho = MiningConfLength
-                    End If
-
-
-                    ocho = ocho + 1
-                End While
-
-            End If
         End If
 
 
@@ -596,7 +660,7 @@ Public Class Form1
         TrackBar1.Maximum = Tempstring
         TrackBar1.Value = 0
         Label4.Text = "Space to use (" & TrackBar1.Value & " / " & Tempstring & " GB)"
-        
+
     End Sub
 
 
@@ -608,15 +672,7 @@ Public Class Form1
         Label4.Text = "Space to use (" & TrackBar1.Value & " / " & Tempstring & " GB)"
     End Sub
 
-
-
-
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-
-
-
-
-
 
         System.Threading.Thread.Sleep(1000)
 
@@ -691,12 +747,5 @@ Public Class Form1
 
     End Sub
 
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-    End Sub
+   
 End Class
