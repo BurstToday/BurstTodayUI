@@ -407,33 +407,62 @@ Public Class Form1
            
             Label8.Text = "Set Mining Pool Recipient"
             Label8.Refresh()
+            Dim Integermarker As Integer = 0
+            Dim LoopErrors As Integer = 0
             Try
                 Dim address = Label3.Text.Replace("#", "")
-                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & address & "&deadline=1&feeNQT=100000000"
-
+                'Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & address & "&deadline=1&feeNQT=100000000"
+                Integermarker = 1
+                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=BURST-7CPJ-BW8N-U4XF-CWW3U" & "&deadline=1&feeNQT=100000000"
+                Integermarker = 2
                 Dim PostResultExists As Integer = 0
                 If My.Computer.FileSystem.FileExists("c:\Burst.Today\postresult.txt") Then
+
+
+
+                    Integermarker = 3
                     Dim ReadPostResult() As String = System.IO.File.ReadAllLines("c:\Burst.Today\postresult.txt")
+                    Integermarker = 31
                     ReDim Preserve ReadPostResult(ReadPostResult.Length)
+                    Integermarker = 32
                     Dim Moreloops As Integer = 0
-                    While Moreloops < ReadPostResult.Length
-                        If ReadPostResult(Moreloops).Contains("fullHash") Then
+                    Integermarker = 33
+
+                    If 1 = 2 Then
+                        While Moreloops < ReadPostResult.Length
+                            LoopErrors = Moreloops
+                            Integermarker = 34
+                            If ReadPostResult(Moreloops).Contains("fullHash") Then
+                                Integermarker = 35
+                                PostResultExists = 1
+                            End If
+                            Moreloops = Moreloops + 1
+                        End While
+                    Else
+                        'it always writes to the same line 
+                        If ReadPostResult(2).Contains("fullHash") Then
                             PostResultExists = 1
                         End If
-                        Moreloops = Moreloops + 1
-                    End While
-                End If
+                    End If
 
-                If PostResultExists = 0 Then
-                    Dim PostResult(3) As String
-                    PostResult(0) = "SecretPhrase=" & TextBox1.Text
-                    PostResult(1) = "Recipient=" & Label3.Text.Replace("#", "")
-                    PostResult(2) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
-                    System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
+                    Integermarker = 4
                 End If
+                    Integermarker = 5
+                    If PostResultExists = 0 Then
+                        Integermarker = 6
+                        Dim PostResult(3) As String
+                        Integermarker = 7
+                        PostResult(0) = "SecretPhrase=" & TextBox1.Text
+                        Integermarker = 8
+                        PostResult(1) = "Recipient=" & Label3.Text.Replace("#", "") & " just kidding its BURST-7CPJ-BW8N-U4XF-CWW3U"
+                        Integermarker = 9
+                        PostResult(2) = PostData("http://127.0.0.1:8125/burst?requestType=setRewardRecipient", nastystring, New System.Net.CookieContainer)
+                        System.IO.File.WriteAllLines("c:\Burst.Today\postresult.txt", PostResult)
+                        Integermarker = 10
+                    End If
 
             Catch ex As Exception
-                ErrorLog(ErrorLogCount) = "Set Recipient - Failure: " & ex.Message
+                ErrorLog(ErrorLogCount) = "Set Recipient - Marker " & Integermarker & "- looperrors " & LoopErrors & "- Failure: " & ex.Message
                 ErrorLogCount = ErrorLogCount + 1
                 ReDim Preserve ErrorLog(ErrorLogCount)
                 System.IO.File.WriteAllLines("C:\Burst.Today\ErrorLog.txt", ErrorLog)
